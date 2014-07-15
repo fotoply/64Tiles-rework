@@ -2,6 +2,9 @@ package dk.sdc.Candy2048Crush;
 
 import android.graphics.Canvas;
 import android.view.View;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * Created by sdc on 7/15/14.
@@ -91,7 +94,15 @@ public class Tile extends View implements View.OnClickListener {
      */
     @Override
     public void onClick(View v) {
-
+        ArrayList<Tile> selectedtile = parent.selectedTiles();
+        if (selectedtile.size() > 1) {
+            parent.deselectAll();
+            Toast.makeText(getContext(),"Error: too many selected, deselecting all",Toast.LENGTH_LONG);
+        } else if (selectedtile.size() == 1) {
+            parent.isAdjacentTile(this, selectedtile.get(0));
+        } else {
+            setSelected(true);
+        }
     }
 
     public int getxPos() {
