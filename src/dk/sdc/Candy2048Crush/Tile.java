@@ -111,9 +111,12 @@ public class Tile extends View implements View.OnClickListener {
      */
     @Override
     public void onClick(View v) {
-        ArrayList<Tile> selectedTile = parent.getSelectedTiles();
-        if (selectedTile.size() > 1) {
+        ArrayList<Tile> selectedTiles = parent.getSelectedTiles();
+        if (selectedTiles.size() > 1) {
             parent.deselectAll();
+            Toast.makeText(getContext(),"Error: too many selected, deselecting all",Toast.LENGTH_LONG);
+        } else if (selectedTiles.size() == 1) {
+            parent.isAdjacentTile(this, selectedTiles.get(0));
             Toast.makeText(getContext(),"Error: too many selected, deselecting all",Toast.LENGTH_LONG).show();
         } else if (selectedTile.size() == 1) {
             parent.isAdjacentTile(this, selectedTile.get(0));
