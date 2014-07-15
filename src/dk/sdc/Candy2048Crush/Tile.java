@@ -80,22 +80,195 @@ public class Tile extends View implements View.OnClickListener {
         return false;
     }
 
+    public void updateTile() {
+        if (isComboAvailable()) {
+            executeCombo();
+        }
+    }
+
     public void executeCombo() {
+        if (parent.getTileAt(xPos - 1, yPos).value == value) {
+            if (parent.getTileAt(xPos - 2, yPos).value == value) {
+                if (parent.getTileAt(xPos + 1, yPos).value == value) {
+                    if (parent.getTileAt(xPos + 2, yPos).value == value) { // Fem ens!
+                        parent.removeTileAt(xPos - 1, yPos);
+                        parent.removeTileAt(xPos - 2, yPos);
+                        parent.removeTileAt(xPos + 1, yPos);
+                        parent.removeTileAt(xPos + 2, yPos);
+                        parent.removeTileAt(xPos, yPos);
+
+                        parent.tileList.add(new Tile(parent, xPos, yPos, value * 8));
+                        parent.generateNewTile(xPos - 1, yPos);
+                        parent.generateNewTile(xPos - 2, yPos);
+                        parent.generateNewTile(xPos + 1, yPos);
+                        parent.generateNewTile(xPos + 2, yPos);
+                    } else { // FIRE ENS
+                        parent.removeTileAt(xPos - 1, yPos);
+                        parent.removeTileAt(xPos - 2, yPos);
+                        parent.removeTileAt(xPos + 1, yPos);
+                        parent.removeTileAt(xPos, yPos);
+
+                        parent.tileList.add(new Tile(parent, xPos, yPos, value * 4));
+                        parent.generateNewTile(xPos - 1, yPos);
+                        parent.generateNewTile(xPos - 2, yPos);
+                        parent.generateNewTile(xPos + 1, yPos);
+                    }
+                } else { // TRE ENS
+                    parent.removeTileAt(xPos - 1, yPos);
+                    parent.removeTileAt(xPos - 2, yPos);
+                    parent.removeTileAt(xPos, yPos);
+
+                    parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                    parent.generateNewTile(xPos - 1, yPos);
+                    parent.generateNewTile(xPos - 2, yPos);
+                }
+            } else if (parent.getTileAt(xPos + 1, yPos).value == value) {
+                if (parent.getTileAt(xPos + 2, yPos).value == value) { // FIRE ENS
+                    parent.removeTileAt(xPos - 1, yPos);
+                    parent.removeTileAt(xPos + 1, yPos);
+                    parent.removeTileAt(xPos + 2, yPos);
+                    parent.removeTileAt(xPos, yPos);
+
+                    parent.tileList.add(new Tile(parent, xPos, yPos, value * 4));
+                    parent.generateNewTile(xPos - 1, yPos);
+                    parent.generateNewTile(xPos + 1, yPos);
+                    parent.generateNewTile(xPos + 2, yPos);
+                } else { // TRE ENS
+                    parent.removeTileAt(xPos - 1, yPos);
+                    parent.removeTileAt(xPos + 1, yPos);
+                    parent.removeTileAt(xPos, yPos);
+
+                    parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                    parent.generateNewTile(xPos - 1, yPos);
+                    parent.generateNewTile(xPos + 1, yPos);
+                }
+            }
+        } else if (parent.getTileAt(xPos + 1, yPos).value == value) {
+            if (parent.getTileAt(xPos + 2, yPos).value == value) { // TRE ENS
+                parent.removeTileAt(xPos + 2, yPos);
+                parent.removeTileAt(xPos + 1, yPos);
+                parent.removeTileAt(xPos, yPos);
+
+                parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                parent.generateNewTile(xPos + 1, yPos);
+                parent.generateNewTile(xPos + 2, yPos);
+            }
+        } else if (parent.getTileAt(xPos, yPos - 1).value == value) {
+            if (parent.getTileAt(xPos, yPos - 2).value == value) {
+                if (parent.getTileAt(xPos, yPos + 1).value == value) {
+                    if (parent.getTileAt(xPos, yPos + 2).value == value) { // FEM ens LODRET
+                        parent.removeTileAt(xPos, yPos - 1);
+                        parent.removeTileAt(xPos, yPos - 2);
+                        parent.removeTileAt(xPos, yPos + 1);
+                        parent.removeTileAt(xPos, yPos + 2);
+                        parent.removeTileAt(xPos, yPos);
+
+                        parent.tileList.add(new Tile(parent, xPos, yPos, value * 8));
+                        parent.generateNewTile(xPos, yPos - 1);
+                        parent.generateNewTile(xPos, yPos - 2);
+                        parent.generateNewTile(xPos, yPos + 1);
+                        parent.generateNewTile(xPos, yPos + 2);
+                    } else { // FIRE ENS LODRET
+                        parent.removeTileAt(xPos, yPos - 1);
+                        parent.removeTileAt(xPos, yPos - 2);
+                        parent.removeTileAt(xPos, yPos + 1);
+                        parent.removeTileAt(xPos, yPos);
+
+                        parent.tileList.add(new Tile(parent, xPos, yPos, value * 4));
+                        parent.generateNewTile(xPos, yPos - 1);
+                        parent.generateNewTile(xPos, yPos - 2);
+                        parent.generateNewTile(xPos, yPos + 1);
+                    }
+                } else { // TRE ENS LODRET
+                    parent.removeTileAt(xPos, yPos - 1);
+                    parent.removeTileAt(xPos, yPos - 2);
+                    parent.removeTileAt(xPos, yPos);
+
+                    parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                    parent.generateNewTile(xPos, yPos - 1);
+                    parent.generateNewTile(xPos, yPos - 2);
+                }
+            } else {
+                if (parent.getTileAt(xPos, yPos + 1).value == value) {
+                    if (parent.getTileAt(xPos, yPos + 2).value == value) { // FIRE ENS LODRET
+                        parent.removeTileAt(xPos, yPos - 1);
+                        parent.removeTileAt(xPos, yPos + 2);
+                        parent.removeTileAt(xPos, yPos + 1);
+                        parent.removeTileAt(xPos, yPos);
+
+                        parent.tileList.add(new Tile(parent, xPos, yPos, value * 4));
+                        parent.generateNewTile(xPos, yPos - 1);
+                        parent.generateNewTile(xPos, yPos + 1);
+                        parent.generateNewTile(xPos, yPos + 2);
+                    }
+                } else { // TRE ENS LODRET
+                    parent.removeTileAt(xPos, yPos - 1);
+                    parent.removeTileAt(xPos, yPos + 1);
+                    parent.removeTileAt(xPos, yPos);
+
+                    parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                    parent.generateNewTile(xPos, yPos - 1);
+                    parent.generateNewTile(xPos, yPos + 1);
+                }
+            }
+        } else if (parent.getTileAt(xPos, yPos + 1).value == value) {
+            if (parent.getTileAt(xPos, yPos + 2).value == value) { // TRE ENS LODRET
+                parent.removeTileAt(xPos, yPos + 1);
+                parent.removeTileAt(xPos, yPos + 2);
+                parent.removeTileAt(xPos, yPos);
+
+                parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                parent.generateNewTile(xPos, yPos + 1);
+                parent.generateNewTile(xPos, yPos + 2);
+            }
+        }
+    }
+
+/*
+        public void executeCombo() {
         int tilesFound = 1;
         if (parent.getTileAt(xPos, yPos - 1).value == value) {
             tilesFound++;
-            parent.generateNewTile()
+            parent.generateNewTile(xPos, yPos - 1);
             if (parent.getTileAt(xPos, yPos - 2).value == value) {
                 tilesFound++;
+                parent.generateNewTile(xPos, yPos - 2);
             }
         }
         if (parent.getTileAt(xPos, yPos + 1).value == value) {
             tilesFound++;
+            parent.generateNewTile(xPos, yPos + 1);
             if (parent.getTileAt(xPos, yPos + 2).value == value) {
                 tilesFound++;
+                parent.generateNewTile(xPos, yPos + 2);
             }
         }
-    }
+        if (tilesFound >= 3) {
+            setValue(value*(int)(Math.pow(2, tilesFound-2)));
+        } else {
+            tilesFound = 1;
+            if (parent.getTileAt(xPos - 1, yPos).value == value) {
+                tilesFound++;
+                parent.generateNewTile(xPos - 1, yPos);
+                if (parent.getTileAt(xPos - 2, yPos).value == value) {
+                    tilesFound++;
+                    parent.generateNewTile(xPos - 2, yPos);
+                }
+            }
+            if (parent.getTileAt(xPos + 1, yPos).value == value) {
+                tilesFound++;
+                parent.generateNewTile(xPos + 1, yPos);
+                if (parent.getTileAt(xPos + 2, yPos).value == value) {
+                    tilesFound++;
+                    parent.generateNewTile(xPos + 2, yPos);
+                }
+            }
+            if (tilesFound >= 3) {
+                setValue(value * (int) (Math.pow(2, tilesFound - 2)));
+            }
+        }
+
+    }*/
 
     public boolean isSelected() {
         return selected;

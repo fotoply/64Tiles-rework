@@ -43,6 +43,7 @@ public class Grid extends FrameLayout{
         Random rng = new Random();
         tempTile.setValue(tileValues[rng.nextInt(tileValues.length)]);
         tileList.add(tempTile);
+        tileList.get(tileList.size()-1).updateTile();
         return tempTile;
     }
 
