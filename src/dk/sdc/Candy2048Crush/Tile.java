@@ -79,6 +79,8 @@ public class Tile extends View implements View.OnClickListener {
         return false;
     }
 
+    public void executeCombo
+
     public boolean isSelected() {
         return selected;
     }
@@ -94,12 +96,12 @@ public class Tile extends View implements View.OnClickListener {
      */
     @Override
     public void onClick(View v) {
-        ArrayList<Tile> selectedtile = parent.selectedTiles();
-        if (selectedtile.size() > 1) {
+        ArrayList<Tile> selectedTile = parent.getSelectedTiles();
+        if (selectedTile.size() > 1) {
             parent.deselectAll();
             Toast.makeText(getContext(),"Error: too many selected, deselecting all",Toast.LENGTH_LONG);
-        } else if (selectedtile.size() == 1) {
-            parent.isAdjacentTile(this, selectedtile.get(0));
+        } else if (selectedTile.size() == 1) {
+            parent.isAdjacentTile(this, selectedTile.get(0));
         } else {
             setSelected(true);
         }

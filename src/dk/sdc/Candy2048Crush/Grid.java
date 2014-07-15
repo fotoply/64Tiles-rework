@@ -62,7 +62,7 @@ public class Grid extends FrameLayout{
      * Goes through all tiles and detects selected ones
      * @return a list of selected tiles
      */
-    public ArrayList<Tile> selectedTiles(){
+    public ArrayList<Tile> getSelectedTiles(){
         ArrayList<Tile> selectedTile = new ArrayList<Tile>();
         for (int i = 0; i< tileList.size(); i++){
             Tile temp = tileList.get(i);
