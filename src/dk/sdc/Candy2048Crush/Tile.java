@@ -9,6 +9,13 @@ public class Tile {
     private int y;
     private int value;
 
+    public Tile(Grid parent, int x, int y, int value) {
+        this.parent = parent;
+        this.x = x;
+        this.y = y;
+        this.value = value;
+    }
+
     public int getX() {
         return x;
     }
