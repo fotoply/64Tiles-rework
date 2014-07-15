@@ -117,7 +117,11 @@ public class Tile extends View implements View.OnClickListener {
             parent.deselectAll();
             Toast.makeText(getContext(), "Error: too many selected, deselecting all", Toast.LENGTH_LONG).show();
         } else if (selectedTiles.size() == 1) {
-            parent.isAdjacentTile(this, selectedTiles.get(0));
+            if (parent.isAdjacentTile(this, selectedTiles.get(0))){
+                parent.swapTiles(this,selectedTiles.get(0),false);
+            } else {
+                parent.deselectAll();
+            }
         } else {
             setSelected(true);
         }
