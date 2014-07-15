@@ -16,6 +16,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        getActionBar().hide();
+
         Button buStartGame = (Button)findViewById(R.id.buGameStart);
         buStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
