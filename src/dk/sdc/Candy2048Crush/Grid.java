@@ -15,11 +15,11 @@ public class Grid extends FrameLayout{
     ArrayList<Tile> tileList = new ArrayList<Tile>();
 
     public Grid(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public Grid(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public Grid(Context context, AttributeSet attrs, int defStyle) {
@@ -56,5 +56,16 @@ public class Grid extends FrameLayout{
         }
 
         return new Tile(null,-1,-1,-1);
+    }
+
+    public ArrayList<Tile> selectedTiles(){
+        ArrayList<Tile> selectedTile = new ArrayList<Tile>();
+        for (int i = 0; i< tileList.size(); i++){
+            Tile temp = tileList.get(i);
+            if (temp.isSelected()) {
+                selectedTile.add(tileList.get(i));
+            }
+        }
+        return selectedTile;
     }
 }
