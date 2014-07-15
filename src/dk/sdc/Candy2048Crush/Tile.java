@@ -1,6 +1,8 @@
 package dk.sdc.Candy2048Crush;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,6 +18,10 @@ public class Tile extends View implements View.OnClickListener {
     private int yPos;
     private int value;
     private boolean selected;
+    double drawWidth;
+    Paint standardTile;
+    Paint selectedTile;
+
 
     public Tile(Grid parent, int x, int y, int value) {
         super(parent.getContext());
@@ -34,6 +40,14 @@ public class Tile extends View implements View.OnClickListener {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        standardTile = new Paint();
+        selectedTile = new Paint();
+        drawWidth = (double) ((canvas.getWidth()-40-8*5)/8);
+        standardTile.setColor(Color.LTGRAY);
+        selectedTile.setColor(Color.BLUE);
+
+        canvas.drawRect((float)20+drawWidth*xPos+5*xPos, (float)20+drawWidth*yPos+5*yPos, (float)(20+drawWidth*xPos+5*xPos)+drawWidth, (float)(20+drawWidth*yPos+5*yPos)+drawWidth, standardTile );
+
     }
 
     /**
