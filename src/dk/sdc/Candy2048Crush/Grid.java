@@ -58,6 +58,10 @@ public class Grid extends FrameLayout{
         return new Tile(null,-1,-1,-1);
     }
 
+    /**
+     * Goes through all tiles and detects selected ones
+     * @return a list of selected tiles
+     */
     public ArrayList<Tile> selectedTiles(){
         ArrayList<Tile> selectedTile = new ArrayList<Tile>();
         for (int i = 0; i< tileList.size(); i++){
@@ -67,5 +71,15 @@ public class Grid extends FrameLayout{
             }
         }
         return selectedTile;
+    }
+
+    /**
+     * Deselects all tiles
+     */
+    public void deselectAll() {
+        for (int i = 0; i<tileList.size(); i++){
+            Tile temp = tileList.get(i);
+            temp.setSelected(false);
+        }
     }
 }
