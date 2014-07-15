@@ -109,4 +109,28 @@ public class Grid extends FrameLayout{
             temp.setSelected(false);
         }
     }
+
+    /**
+     * Swaps two tiles, and checks if it creates a combo, if not it deselects all and calls isGameOver
+     * @param a First tile to be swapped
+     * @param b Second tile to be swapped
+     * @param restore if the method restores deselects all and checks for game over after re-swapping the tiles
+     */
+    public void swapTiles(Tile a, Tile b, boolean restore){
+        int tempValue = a.getValue();
+        a.setValue(b.getValue());
+        b.setValue(tempValue);
+        if (restore) {
+            //TODO: isGameOver
+            deselectAll();
+        } else {
+            if (a.isComboAvailable()){
+                a.executeCombo();
+            } else if (b.isComboAvailable()){
+                b.executeCombo();
+            } else {
+                swapTiles(a,b,true);
+            }
+        }
+    }
 }
