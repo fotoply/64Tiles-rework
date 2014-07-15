@@ -80,12 +80,18 @@ public class Tile extends View implements View.OnClickListener {
         return false;
     }
 
+    /**
+     * Will execute the combo for a tile if any is available.
+     */
     public void updateTile() {
         if (isComboAvailable()) {
             executeCombo();
         }
     }
 
+    /**
+     * Finds and executes combos for the current tile and its surroundings. Will propagate into nwe tiles to avoid non-executed combo leftovers.
+     */
     public void executeCombo() {
         if (parent.getTileAt(xPos - 1, yPos).value == value) {
             if (parent.getTileAt(xPos - 2, yPos).value == value) {
@@ -100,6 +106,7 @@ public class Tile extends View implements View.OnClickListener {
                         parent.tileList.add(new Tile(parent, xPos, yPos, value * 8));
                         parent.generateNewTile(xPos - 1, yPos);
                         parent.generateNewTile(xPos - 2, yPos);
+
                         parent.generateNewTile(xPos + 1, yPos);
                         parent.generateNewTile(xPos + 2, yPos);
                     } else { // FIRE ENS

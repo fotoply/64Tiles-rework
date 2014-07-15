@@ -26,16 +26,43 @@ public class Grid extends FrameLayout{
 
     public Grid(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        addView(new Tile(this,1,1,2));
+        addView(new Tile(this, 1, 1, 2));
     }
 
     /**
-     * Generates a tile at the specified x and y coordinate. Will remove any previous tile at the x and y before creating the new one. Will return the tile but will also add it to the grids tilelist.
+     * Generates a grid of tiles, with width*height amount of tiles.
+     * @param width
+     * @param height
+     */
+    public void generateGrid(int width, int height) {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                generateNewTile(i,j,false);
+            }
+        }
+        for(int i = 0; i < tileList.size(); i++) {
+            tileList.get(i).updateTile();
+        }
+    }
+
+    /**
+     * Generates a tile at the specified x and y coordinate. Will remove any previous tile at the x and y before creating the new one. Will return the tile but will also add it to the grids tileList.  Will update the tile and execute combos.
      * @param x
      * @param y
      * @return The newly created tile
      */
     public Tile generateNewTile(int x, int y) {
+        return  generateNewTile(x,y,true);
+    }
+
+    /**
+     * Generates a tile at the specified x and y coordinate. Will remove any previous tile at the x and y before creating the new one. Will return the tile but will also add it to the grids tileList. Will update the tile and execute combos if update is set to true.
+     * @param x
+     * @param y
+     * @param update
+     * @return The newly created tile
+     */
+    public Tile generateNewTile(int x, int y, boolean update) {
         if(getTileAt(x,y).getValue() != -1) {
             removeTileAt(x,y);
         }
@@ -43,7 +70,9 @@ public class Grid extends FrameLayout{
         Random rng = new Random();
         tempTile.setValue(tileValues[rng.nextInt(tileValues.length)]);
         tileList.add(tempTile);
-        tileList.get(tileList.size()-1).updateTile();
+        if(update) {
+            tileList.get(tileList.size() - 1).updateTile();
+        }
         return tempTile;
     }
 
@@ -123,7 +152,6 @@ public class Grid extends FrameLayout{
         b.setValue(tempValue);
         if (restore) {
             //TODO: isGameOver
-            deselectAll();
         } else {
             if (a.isComboAvailable()){
                 a.executeCombo();
@@ -133,5 +161,6 @@ public class Grid extends FrameLayout{
                 swapTiles(a,b,true);
             }
         }
+        deselectAll();
     }
 }
