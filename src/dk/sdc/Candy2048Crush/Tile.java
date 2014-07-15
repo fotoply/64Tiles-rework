@@ -17,6 +17,8 @@ public class Tile {
         this.value = value;
     }
 
+
+
     /**
      * Will detect whether the tile and adjacent tiles are in the correct position for a combo
      * @return Returns true if a combo is found, otherwise returns false
@@ -82,13 +84,5 @@ public class Tile {
 
     public void setY(int y) {
         this.y = y;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 }
