@@ -2,7 +2,6 @@ package dk.sdc.Candy2048Crush;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class Grid extends FrameLayout{
      * @return Returns true if tiles are adjacent
      */
     public boolean isAdjacentTile(Tile tile1, Tile tile2) {
-        if((Math.abs(tile1.getX()-tile2.getX()) == 1 && tile1.getY() == tile2.getY()) || (Math.abs(tile1.getY()-tile2.getY()) == 1 && tile1.getX() == tile2.getX())) {
+        if((Math.abs(tile1.getxPos()-tile2.getxPos()) == 1 && tile1.getyPos() == tile2.getyPos()) || (Math.abs(tile1.getyPos()-tile2.getyPos()) == 1 && tile1.getxPos() == tile2.getxPos())) {
             return true;
         }
         return false;
@@ -50,7 +49,7 @@ public class Grid extends FrameLayout{
     public Tile getTileAt(int x, int y) {
         for(int i = 0; i < tileList.size(); i++) {
             Tile temp = tileList.get(i);
-            if(temp.getX() == x && temp.getY() == y) {
+            if(temp.getxPos() == x && temp.getyPos() == y) {
                 return tileList.get(i);
             }
         }

@@ -9,16 +9,16 @@ import android.view.View;
 
 public class Tile extends View implements View.OnClickListener {
     private Grid parent;
-    private int x;
-    private int y;
+    private int xPos;
+    private int yPos;
     private int value;
     private boolean selected;
 
     public Tile(Grid parent, int x, int y, int value) {
         super(parent.getContext());
         this.parent = parent;
-        this.x = x;
-        this.y = y;
+        this.xPos = x;
+        this.yPos = y;
         this.value = value;
         setOnClickListener(this);
     }
@@ -39,15 +39,15 @@ public class Tile extends View implements View.OnClickListener {
      */
     public boolean isComboAvailable() {
         int tilesFound = 1;
-        if(parent.getTileAt(x,y-1).value == value) {
+        if(parent.getTileAt(xPos,yPos-1).value == value) {
             tilesFound++;
-            if(parent.getTileAt(x,y-2).value == value) {
+            if(parent.getTileAt(xPos,yPos-2).value == value) {
                 tilesFound++;
             }
         }
-        if(parent.getTileAt(x,y+1).value == value) {
+        if(parent.getTileAt(xPos,yPos+1).value == value) {
             tilesFound++;
-            if(parent.getTileAt(x,y+2).value == value) {
+            if(parent.getTileAt(xPos,yPos+2).value == value) {
                 tilesFound++;
             }
         }
@@ -57,15 +57,15 @@ public class Tile extends View implements View.OnClickListener {
 
         tilesFound = 1;
 
-        if(parent.getTileAt(x-1,y).value == value) {
+        if(parent.getTileAt(xPos-1,yPos).value == value) {
             tilesFound++;
-            if(parent.getTileAt(x-2,y).value == value) {
+            if(parent.getTileAt(xPos-2,yPos).value == value) {
                 tilesFound++;
             }
         }
-        if(parent.getTileAt(x+1,y).value == value) {
+        if(parent.getTileAt(xPos+1,yPos).value == value) {
             tilesFound++;
-            if(parent.getTileAt(x+2,y).value == value) {
+            if(parent.getTileAt(xPos+2,yPos).value == value) {
                 tilesFound++;
             }
         }
@@ -94,19 +94,27 @@ public class Tile extends View implements View.OnClickListener {
 
     }
 
-//    public int getX() {
-//        return x;
-//    }
-//
-//    public void setX(int x) {
-//        this.x = x;
-//    }
-//
-//    public int getY() {
-//        return y;
-//    }
-//
-//    public void setY(int y) {
-//        this.y = y;
-//    }
+    public int getxPos() {
+        return xPos;
+    }
+
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 }
