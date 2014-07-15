@@ -2,6 +2,7 @@ package dk.sdc.Candy2048Crush;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 public class MainActivity extends Activity {
     /**
