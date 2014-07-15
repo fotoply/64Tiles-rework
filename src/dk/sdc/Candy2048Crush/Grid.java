@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class Grid {
     ArrayList<Tile> tileList = new ArrayList<Tile>();
 
+
+
     /**
      * Checks if a tile is adjacent to another
      * @param tile1 First tile
