@@ -38,41 +38,42 @@ public class Tile extends View implements View.OnClickListener {
 
     /**
      * Will detect whether the tile and adjacent tiles are in the correct position for a combo
+     *
      * @return Returns true if a combo is found, otherwise returns false
      */
     public boolean isComboAvailable() {
         int tilesFound = 1;
-        if(parent.getTileAt(xPos,yPos-1).value == value) {
+        if (parent.getTileAt(xPos, yPos - 1).value == value) {
             tilesFound++;
-            if(parent.getTileAt(xPos,yPos-2).value == value) {
+            if (parent.getTileAt(xPos, yPos - 2).value == value) {
                 tilesFound++;
             }
         }
-        if(parent.getTileAt(xPos,yPos+1).value == value) {
+        if (parent.getTileAt(xPos, yPos + 1).value == value) {
             tilesFound++;
-            if(parent.getTileAt(xPos,yPos+2).value == value) {
+            if (parent.getTileAt(xPos, yPos + 2).value == value) {
                 tilesFound++;
             }
         }
-        if(tilesFound >= 3) {
+        if (tilesFound >= 3) {
             return true;
         }
 
         tilesFound = 1;
 
-        if(parent.getTileAt(xPos-1,yPos).value == value) {
+        if (parent.getTileAt(xPos - 1, yPos).value == value) {
             tilesFound++;
-            if(parent.getTileAt(xPos-2,yPos).value == value) {
+            if (parent.getTileAt(xPos - 2, yPos).value == value) {
                 tilesFound++;
             }
         }
-        if(parent.getTileAt(xPos+1,yPos).value == value) {
+        if (parent.getTileAt(xPos + 1, yPos).value == value) {
             tilesFound++;
-            if(parent.getTileAt(xPos+2,yPos).value == value) {
+            if (parent.getTileAt(xPos + 2, yPos).value == value) {
                 tilesFound++;
             }
         }
-        if(tilesFound >= 3) {
+        if (tilesFound >= 3) {
             return true;
         }
 
@@ -81,19 +82,19 @@ public class Tile extends View implements View.OnClickListener {
 
     public void executeCombo() {
         int tilesFound = 1;
-        if(parent.getTileAt(xPos,yPos-1).value == value) {
+        if (parent.getTileAt(xPos, yPos - 1).value == value) {
             tilesFound++;
-            parent.
-            if(parent.getTileAt(xPos,yPos-2).value == value) {
+            parent.generateNewTile()
+            if (parent.getTileAt(xPos, yPos - 2).value == value) {
                 tilesFound++;
             }
         }
-        if(parent.getTileAt(xPos,yPos+1).value == value) {
+        if (parent.getTileAt(xPos, yPos + 1).value == value) {
             tilesFound++;
-            if(parent.getTileAt(xPos,yPos+2).value == value) {
+            if (parent.getTileAt(xPos, yPos + 2).value == value) {
                 tilesFound++;
             }
-
+        }
     }
 
     public boolean isSelected() {
@@ -114,12 +115,9 @@ public class Tile extends View implements View.OnClickListener {
         ArrayList<Tile> selectedTiles = parent.getSelectedTiles();
         if (selectedTiles.size() > 1) {
             parent.deselectAll();
-            Toast.makeText(getContext(),"Error: too many selected, deselecting all",Toast.LENGTH_LONG);
+            Toast.makeText(getContext(), "Error: too many selected, deselecting all", Toast.LENGTH_LONG).show();
         } else if (selectedTiles.size() == 1) {
             parent.isAdjacentTile(this, selectedTiles.get(0));
-            Toast.makeText(getContext(),"Error: too many selected, deselecting all",Toast.LENGTH_LONG).show();
-        } else if (selectedTile.size() == 1) {
-            parent.isAdjacentTile(this, selectedTile.get(0));
         } else {
             setSelected(true);
         }
