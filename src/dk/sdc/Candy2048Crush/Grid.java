@@ -1,13 +1,31 @@
 package dk.sdc.Candy2048Crush;
 
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+
 import java.util.ArrayList;
 
 /**
  * Created by sdc on 7/15/14.
  */
-public class Grid {
+
+public class Grid extends FrameLayout{
     ArrayList<Tile> tileList = new ArrayList<Tile>();
 
+    public Grid(Context context) {
+        this(context,null);
+    }
+
+    public Grid(Context context, AttributeSet attrs) {
+        this(context, attrs,0);
+    }
+
+    public Grid(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        addView(new Tile(this,1,1,2));
+    }
 
 
     /**
