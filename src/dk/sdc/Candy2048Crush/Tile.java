@@ -389,6 +389,6 @@ public class Tile extends TextView implements View.OnClickListener {
 
     public void setValue(int value) {
         this.value = value;
-        updateTile();
+        setText(""+value);
     }
 }
