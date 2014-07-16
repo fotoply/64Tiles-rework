@@ -3,6 +3,7 @@ package dk.sdc.Candy2048Crush;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -255,7 +256,12 @@ public class Tile extends TextView implements View.OnClickListener {
         }
     }
 
-/*
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+    /*
         public void executeCombo() {
         int tilesFound = 1;
         if (parent.getTileAt(xPos, yPos - 1).value == value) {
