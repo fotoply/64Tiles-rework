@@ -26,7 +26,6 @@ public class Tile extends TextView implements View.OnClickListener {
     private boolean selected;
 
 
-
     public Tile(Grid parent, int x, int y, int value) {
         super(parent.getContext());
         this.parent = parent;
@@ -247,7 +246,7 @@ public class Tile extends TextView implements View.OnClickListener {
         } else if (parent.getTileAt(xPos, yPos + 1).value == value) {
             if (parent.getTileAt(xPos, yPos + 2).value == value) { // TRE ENS LODRET
                 parent.removeTileAt(xPos, yPos + 1);
-                parent.removeTileAt(xPos, yPos + 2);this.parent = parent;
+                parent.removeTileAt(xPos, yPos + 2);
                 parent.removeTileAt(xPos, yPos);
 
                 parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
@@ -324,10 +323,10 @@ public class Tile extends TextView implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         //Log.w("OnClick",((Tile)v).toString());
-        Log.w("TILE ONCLICK","X: "+((Tile)v).getxPos()+"; Y: " + ((Tile)v).getyPos() + "; V: " + ((Tile)v).getValue());
+        Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue());
         ArrayList<Tile> selectedTiles = parent.getSelectedTiles();
 
-        if(selectedTiles.get(0) == this) {
+        if(selectedTiles.size() == 1 && selectedTiles.get(0) == this) {
             setSelected(false);
             return;
         }
@@ -336,12 +335,12 @@ public class Tile extends TextView implements View.OnClickListener {
             parent.deselectAll();
             Toast.makeText(getContext(), "Error: too many selected, deselecting all", Toast.LENGTH_LONG).show();
         } else if (selectedTiles.size() == 1) {
-            if (parent.isAdjacentTile(this, selectedTiles.get(0))){
-                Toast.makeText(getContext(),"Swapping tiles",Toast.LENGTH_SHORT).show();
-                parent.swapTiles(this,selectedTiles.get(0),false);
+            if (parent.isAdjacentTile(this, selectedTiles.get(0))) {
+                Toast.makeText(getContext(), "Swapping tiles", Toast.LENGTH_SHORT).show();
+                parent.swapTiles(this, selectedTiles.get(0), false);
             } else {
                 Log.w("TILE SWAP", "X1: " + this.getxPos() + ", Y1:" + this.getyPos() + "; X2: " + selectedTiles.get(0).getxPos() + ", Y2: " + selectedTiles.get(0).getyPos());
-                Toast.makeText(getContext(),"Not adjacent",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Not adjacent", Toast.LENGTH_SHORT).show();
                 parent.deselectAll();
             }
         } else {
