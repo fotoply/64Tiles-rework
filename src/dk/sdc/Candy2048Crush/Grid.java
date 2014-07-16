@@ -3,6 +3,7 @@ package dk.sdc.Candy2048Crush;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -138,6 +139,7 @@ public class Grid extends FrameLayout{
             Tile temp = tileList.get(i);
             temp.setSelected(false);
         }
+        Toast.makeText(getContext(), "Ready to receive input", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -158,7 +160,8 @@ public class Grid extends FrameLayout{
             } else if (b.isComboAvailable()){
                 b.executeCombo();
             } else {
-                swapTiles(a,b,true);
+                Toast.makeText(getContext(), "Error: No combos found, reverting", Toast.LENGTH_SHORT).show();
+                swapTiles(a, b, true);
             }
         }
         deselectAll();

@@ -46,7 +46,11 @@ public class Tile extends View implements View.OnClickListener {
         standardTile.setColor(Color.LTGRAY);
         selectedTile.setColor(Color.BLUE);
 
-        canvas.drawRect((float)20+drawWidth*xPos+5*xPos, (float)20+drawWidth*yPos+5*yPos, (float)(20+drawWidth*xPos+5*xPos)+drawWidth, (float)(20+drawWidth*yPos+5*yPos)+drawWidth, standardTile );
+        if (isSelected()){
+            canvas.drawRect((float)(20+drawWidth*xPos+5*xPos), (float)(20+drawWidth*yPos+5*yPos), (float)((20+drawWidth*xPos+5*xPos)+drawWidth), (float)((20+drawWidth*yPos+5*yPos)+drawWidth), selectedTile );
+        } else {
+            canvas.drawRect((float)(20+drawWidth*xPos+5*xPos), (float)(20+drawWidth*yPos+5*yPos), (float)((20+drawWidth*xPos+5*xPos)+drawWidth), (float)((20+drawWidth*yPos+5*yPos)+drawWidth), standardTile );
+        }
 
     }
 
