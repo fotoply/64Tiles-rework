@@ -24,6 +24,8 @@ public class Tile extends TextView implements View.OnClickListener {
     private int yPos;
     private int value;
     private boolean selected;
+    private int width = 125;
+    private int height = 125;
 
 
     public Tile(Grid parent, int x, int y, int value) {
@@ -34,8 +36,8 @@ public class Tile extends TextView implements View.OnClickListener {
         this.value = value;
         setOnClickListener(this);
 
-        this.setWidth(125);
-        this.setHeight(125);
+        this.setWidth(width);
+        this.setHeight(height);
         this.setText(value + "");
         this.setBackgroundColor(Color.BLUE);
         this.setGravity(Gravity.CENTER);
@@ -276,6 +278,16 @@ public class Tile extends TextView implements View.OnClickListener {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        if(isSelected()) {
+            Paint p = new Paint();
+            p.setStrokeWidth(5f);
+            p.setColor(Color.CYAN);
+            canvas.drawLine(0,0,width,0,p);
+            canvas.drawLine(0,0,0,height,p);
+            canvas.drawLine(0,height,width,height,p);
+            canvas.drawLine(width,0,width,height,p);
+        }
 
         switch (value) {
             case 2:

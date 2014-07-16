@@ -78,7 +78,18 @@ public class Grid extends GridLayout{
         Log.w("Regenerate tile", "Regenerated tile at: " + x + "," + y );
         int cuTile = tileList.size()-1;
         Random rng = new Random();
-        tileList.get(cuTile).setValue(tileValues[rng.nextInt(tileValues.length)]);
+        double random = rng.nextDouble();
+        if(random < 0.5) {
+            tileList.get(cuTile).setValue(tileValues[0]);
+        } else if(random < 0.75) {
+            tileList.get(cuTile).setValue(tileValues[1]);
+        } else if(random < 0.9) {
+            tileList.get(cuTile).setValue(tileValues[2]);
+        } else {
+            tileList.get(cuTile).setValue(tileValues[3]);
+        }
+
+        //tileList.get(cuTile).setValue(tileValues[rng.nextInt(tileValues.length)]);
         if(update) {
             tileList.get(cuTile).updateTile();
         }
