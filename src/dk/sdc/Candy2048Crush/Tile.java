@@ -65,7 +65,7 @@ public class Tile extends TextView implements View.OnClickListener {
      * @return Returns true if a combo is found, otherwise returns false
      */
     public boolean isComboAvailableVertical() {
-        Log.w("COMBO", "looking for horizontal combo at:" + xPos + "," + yPos);
+        Log.w("COMBO", "looking for vertical combo at:" + xPos + "," + yPos);
         int tilesFound = 1;
         if (parent.getTileAt(xPos, yPos - 1).value == value) {
             tilesFound++;
