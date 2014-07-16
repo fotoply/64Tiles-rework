@@ -75,6 +75,7 @@ public class Grid extends GridLayout{
             removeTileAt(x,y);
         }
         tileList.add(new Tile(this,x,y,-1));
+        Log.w("Regenerate tile", "Regenerated tile at: " + x + "," + y );
         int cuTile = tileList.size()-1;
         Random rng = new Random();
         tileList.get(cuTile).setValue(tileValues[rng.nextInt(tileValues.length)]);

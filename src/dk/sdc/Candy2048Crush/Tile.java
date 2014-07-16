@@ -80,6 +80,7 @@ public class Tile extends TextView implements View.OnClickListener {
             }
         }
         if (tilesFound >= 3) {
+            Log.w("executing combo", "found vertical combo at:" + xPos + "," + yPos);
             return true;
         }
 
@@ -98,6 +99,7 @@ public class Tile extends TextView implements View.OnClickListener {
             }
         }
         if (tilesFound >= 3) {
+            Log.w("executing combo", "found horizontal combo at:" + xPos + "," + yPos);
             return true;
         }
 
@@ -118,7 +120,7 @@ public class Tile extends TextView implements View.OnClickListener {
      * Finds and executes combos for the current tile and its surroundings. Will propagate into nwe tiles to avoid non-executed combo leftovers.
      */
     public void executeCombo() {
-        Log.w("executing combo", "executing combo");
+        Log.w("executing combo", "executing combo at:" + xPos + "," + yPos);
         if (parent.getTileAt(xPos - 1, yPos).value == value) {
             if (parent.getTileAt(xPos - 2, yPos).value == value) {
                 if (parent.getTileAt(xPos + 1, yPos).value == value) {
