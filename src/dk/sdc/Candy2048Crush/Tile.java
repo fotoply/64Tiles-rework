@@ -3,7 +3,11 @@ package dk.sdc.Candy2048Crush;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.View;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -12,7 +16,7 @@ import java.util.ArrayList;
  * Created by sdc on 7/15/14.
  */
 
-public class Tile extends View implements View.OnClickListener {
+public class Tile extends TextView implements View.OnClickListener {
     private Grid parent;
     private int xPos;
     private int yPos;
@@ -21,7 +25,6 @@ public class Tile extends View implements View.OnClickListener {
     double drawWidth;
     Paint standardTile;
     Paint selectedTile;
-    Paint textColor;
 
 
     public Tile(Grid parent, int x, int y, int value) {
@@ -31,55 +34,31 @@ public class Tile extends View implements View.OnClickListener {
         this.yPos = y;
         this.value = value;
         setOnClickListener(this);
+
+        this.setWidth(125);
+        this.setHeight(125);
+        this.setText(value + "");
+        this.setBackgroundColor(Color.BLUE);
     }
 
-    /**
-     * Implement this to do your drawing.
-     *
-     * @param canvas the canvas on which the background will be drawn
-     */
-    @Override
+    /*@Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         standardTile = new Paint();
         selectedTile = new Paint();
-        textColor = new Paint();
         drawWidth = (double) ((canvas.getWidth()-40-8*5)/8);
         standardTile.setColor(Color.LTGRAY);
         selectedTile.setColor(Color.BLUE);
-        textColor.setColor(Color.BLACK);
-        textColor.setTextSize((float) textSize(value, drawWidth));
 
-        if (isSelected()){
+        canvas.drawRect(0,0,125,125,standardTile);
+
+        *//*if (isSelected()){
             canvas.drawRect((float)(20+drawWidth*xPos+5*xPos), (float)(20+drawWidth*yPos+5*yPos), (float)((20+drawWidth*xPos+5*xPos)+drawWidth), (float)((20+drawWidth*yPos+5*yPos)+drawWidth), selectedTile );
         } else {
             canvas.drawRect((float)(20+drawWidth*xPos+5*xPos), (float)(20+drawWidth*yPos+5*yPos), (float)((20+drawWidth*xPos+5*xPos)+drawWidth), (float)((20+drawWidth*yPos+5*yPos)+drawWidth), standardTile );
-        }
+        }*//*
 
-        canvas.drawText(""+value, (float)(20+drawWidth*xPos+5*xPos), (float)(20+drawWidth*(yPos+1)+5*yPos-10), textColor);
-
-    }
-
-    /**
-     * Set text size so it is always inside the tile.
-     * @param value Value of tile.
-     * @param drawWidth The width of a tile.
-     * @return textSize so that always can be inside the tile.
-     */
-
-    public float textSize(int value, double drawWidth){
-        String text = "" + value;
-        Paint paint = new Paint();
-        int size = 0;
-        if (text.length() == 1 ){
-            size = (int) (drawWidth/1.5);
-        } else {
-            do {
-                paint.setTextSize(++ size);
-            } while (paint.measureText(text) < drawWidth - 20);
-        }
-        return size;
-    }
+    }*/
 
     /**
      * Will detect whether the tile and adjacent tiles are in the correct position for a combo
@@ -129,6 +108,7 @@ public class Tile extends View implements View.OnClickListener {
      * Will execute the combo for a tile if any is available.
      */
     public void updateTile() {
+        this.setText(value + "");
         if (isComboAvailable()) {
             executeCombo();
         }
@@ -266,7 +246,7 @@ public class Tile extends View implements View.OnClickListener {
         } else if (parent.getTileAt(xPos, yPos + 1).value == value) {
             if (parent.getTileAt(xPos, yPos + 2).value == value) { // TRE ENS LODRET
                 parent.removeTileAt(xPos, yPos + 1);
-                parent.removeTileAt(xPos, yPos + 2);
+                parent.removeTileAt(xPos, yPos + 2);this.parent = parent;
                 parent.removeTileAt(xPos, yPos);
 
                 parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
@@ -337,6 +317,8 @@ public class Tile extends View implements View.OnClickListener {
      */
     @Override
     public void onClick(View v) {
+        Log.w("OnClick",((Tile)v).toString());
+        Log.w("OnClick","X: "+((Tile)v).getxPos()+"; Y: " + ((Tile)v).getyPos());
         ArrayList<Tile> selectedTiles = parent.getSelectedTiles();
         if (selectedTiles.size() > 1) {
             parent.deselectAll();
@@ -346,6 +328,7 @@ public class Tile extends View implements View.OnClickListener {
                 Toast.makeText(getContext(),"Swapping tiles",Toast.LENGTH_SHORT).show();
                 parent.swapTiles(this,selectedTiles.get(0),false);
             } else {
+                Log.w("Tile swapping", "X1: " + this.getxPos() + ", Y1:" + this.getyPos() + "; X2: " + selectedTiles.get(0).getxPos() + ", Y2: " + selectedTiles.get(0).getyPos());
                 Toast.makeText(getContext(),"Not adjacent",Toast.LENGTH_SHORT).show();
                 parent.deselectAll();
             }

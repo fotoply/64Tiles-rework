@@ -2,8 +2,9 @@ package dk.sdc.Candy2048Crush;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
-import android.widget.Toast;
+import android.util.Log;
+import android.view.View;
+import android.widget.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -13,7 +14,7 @@ import java.util.Random;
  */
 
 
-public class Grid extends FrameLayout{
+public class Grid extends GridLayout{
     ArrayList<Tile> tileList = new ArrayList<Tile>();
     int[] tileValues = {2,4,8,16};
 
@@ -36,6 +37,8 @@ public class Grid extends FrameLayout{
      * @param height
      */
     public void generateGrid(int width, int height) {
+        this.setRowCount(width);
+        this.setColumnCount(height);
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 generateNewTile(i,j,false);
@@ -74,8 +77,39 @@ public class Grid extends FrameLayout{
         if(update) {
             tileList.get(tileList.size() - 1).updateTile();
         }
-        addView(tileList.get(tileList.size()-1));
+        Spec row = GridLayout.spec(y, 1);
+        Spec colspan = GridLayout.spec(x, 1);
+        GridLayout.LayoutParams gridLayoutParam = new GridLayout.LayoutParams(row,colspan);
+        tileList.get(tileList.size()-1).layout(0,0,125,125);
+        //Log.w("Creation", tempTile.getParent().toString());
+        try {
+            addView(tileList.get(tileList.size() - 1), gridLayoutParam);
+            final Tile tempT = tileList.get(tileList.size()-1);
+            tileList.get(tileList.size()-1).setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tempT.onClick(v);
+                }
+            });
+            Log.w("Creation", tempTile.getParent().toString());
+        }
+        catch (Exception e) {
+
+        }
         return tempTile;
+
+        /*Spec row = GridLayout.spec(y, 1);
+        Spec colspan = GridLayout.spec(x, 1);
+        GridLayout.LayoutParams gridLayoutParam = new GridLayout.LayoutParams(row,colspan);
+        final TileTest t = new TileTest(getContext());
+        t.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t.onTileClick(v);
+            }
+        });
+        addView(t, gridLayoutParam);
+        return null;*/
     }
 
     /**
