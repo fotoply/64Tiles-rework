@@ -27,7 +27,7 @@ public class Grid extends FrameLayout{
 
     public Grid(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        addView(new Tile(this, 1, 1, 2));
+        //addView(new Tile(this, 1, 1, 2));
     }
 
     /**
@@ -74,6 +74,7 @@ public class Grid extends FrameLayout{
         if(update) {
             tileList.get(tileList.size() - 1).updateTile();
         }
+        addView(tileList.get(tileList.size()-1));
         return tempTile;
     }
 
@@ -113,7 +114,7 @@ public class Grid extends FrameLayout{
             }
         }
 
-        return new Tile(null,-1,-1,-1);
+        return new Tile(this,-1,-1,-1);
     }
 
     /**
@@ -157,13 +158,15 @@ public class Grid extends FrameLayout{
         } else {
             if (a.isComboAvailable()){
                 a.executeCombo();
+                deselectAll();
             } else if (b.isComboAvailable()){
                 b.executeCombo();
+                deselectAll();
             } else {
                 Toast.makeText(getContext(), "Error: No combos found, reverting", Toast.LENGTH_SHORT).show();
                 swapTiles(a, b, true);
+                deselectAll();
             }
         }
-        deselectAll();
     }
 }
