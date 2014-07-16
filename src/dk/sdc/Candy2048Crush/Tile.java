@@ -129,9 +129,8 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos - 2, yPos);
                         parent.removeTileAt(xPos + 1, yPos);
                         parent.removeTileAt(xPos + 2, yPos);
-                        parent.removeTileAt(xPos, yPos);
 
-                        parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 8));
+                        setValue(value*8);
                         parent.generateNewTile(xPos - 1, yPos);
                         parent.generateNewTile(xPos - 2, yPos);
                         parent.generateNewTile(xPos + 1, yPos);
@@ -140,9 +139,8 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos - 1, yPos);
                         parent.removeTileAt(xPos - 2, yPos);
                         parent.removeTileAt(xPos + 1, yPos);
-                        parent.removeTileAt(xPos, yPos);
 
-                        parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 4));
+                        setValue(value*4);
                         parent.generateNewTile(xPos - 1, yPos);
                         parent.generateNewTile(xPos - 2, yPos);
                         parent.generateNewTile(xPos + 1, yPos);
@@ -150,9 +148,8 @@ public class Tile extends TextView implements View.OnClickListener {
                 } else { // TRE ENS
                     parent.removeTileAt(xPos - 1, yPos);
                     parent.removeTileAt(xPos - 2, yPos);
-                    parent.removeTileAt(xPos, yPos);
 
-                    parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
+                    setValue(value*2);
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos - 2, yPos);
                 }
@@ -161,18 +158,16 @@ public class Tile extends TextView implements View.OnClickListener {
                     parent.removeTileAt(xPos - 1, yPos);
                     parent.removeTileAt(xPos + 1, yPos);
                     parent.removeTileAt(xPos + 2, yPos);
-                    parent.removeTileAt(xPos, yPos);
 
-                    parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 4));
+                    setValue(value*4);
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos + 1, yPos);
                     parent.generateNewTile(xPos + 2, yPos);
                 } else { // TRE ENS
                     parent.removeTileAt(xPos - 1, yPos);
                     parent.removeTileAt(xPos + 1, yPos);
-                    parent.removeTileAt(xPos, yPos);
 
-                    parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
+                    setValue(value*2);
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos + 1, yPos);
                 }
@@ -181,9 +176,8 @@ public class Tile extends TextView implements View.OnClickListener {
             if (parent.getTileAt(xPos + 2, yPos).value == value) { // TRE ENS
                 parent.removeTileAt(xPos + 2, yPos);
                 parent.removeTileAt(xPos + 1, yPos);
-                parent.removeTileAt(xPos, yPos);
 
-                parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
+                setValue(value*2);
                 parent.generateNewTile(xPos + 1, yPos);
                 parent.generateNewTile(xPos + 2, yPos);
             }
@@ -195,9 +189,8 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos, yPos - 2);
                         parent.removeTileAt(xPos, yPos + 1);
                         parent.removeTileAt(xPos, yPos + 2);
-                        parent.removeTileAt(xPos, yPos);
 
-                        parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 8));
+                        setValue(value*8);
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos - 2);
                         parent.generateNewTile(xPos, yPos + 1);
@@ -206,9 +199,8 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos, yPos - 1);
                         parent.removeTileAt(xPos, yPos - 2);
                         parent.removeTileAt(xPos, yPos + 1);
-                        parent.removeTileAt(xPos, yPos);
 
-                        parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 4));
+                        setValue(value*4);
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos - 2);
                         parent.generateNewTile(xPos, yPos + 1);
@@ -216,9 +208,8 @@ public class Tile extends TextView implements View.OnClickListener {
                 } else { // TRE ENS LODRET
                     parent.removeTileAt(xPos, yPos - 1);
                     parent.removeTileAt(xPos, yPos - 2);
-                    parent.removeTileAt(xPos, yPos);
 
-                    parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
+                    setValue(value*2);
                     parent.generateNewTile(xPos, yPos - 1);
                     parent.generateNewTile(xPos, yPos - 2);
                 }
@@ -226,32 +217,29 @@ public class Tile extends TextView implements View.OnClickListener {
                 if (parent.getTileAt(xPos, yPos + 1).value == value) {
                     if (parent.getTileAt(xPos, yPos + 2).value == value) { // FIRE ENS LODRET
                         parent.removeTileAt(xPos, yPos - 1);
-                        parent.removeTileAt(xPos, yPos + 2);
                         parent.removeTileAt(xPos, yPos + 1);
-                        parent.removeTileAt(xPos, yPos);
+                        parent.removeTileAt(xPos, yPos + 2);
 
-                        parent.tileList.add(new Tile(parent, xPos, yPos, this.value * 4));
+                        setValue(value*4);
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos + 1);
                         parent.generateNewTile(xPos, yPos + 2);
-                    }
-                } else { // TRE ENS LODRET
-                    parent.removeTileAt(xPos, yPos - 1);
-                    parent.removeTileAt(xPos, yPos + 1);
-                    parent.removeTileAt(xPos, yPos);
+                    } else { // TRE ENS LODRET
+                        parent.removeTileAt(xPos, yPos - 1);
+                        parent.removeTileAt(xPos, yPos + 1);
 
-                    parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
-                    parent.generateNewTile(xPos, yPos - 1);
-                    parent.generateNewTile(xPos, yPos + 1);
+                        setValue(value*2);
+                        parent.generateNewTile(xPos, yPos - 1);
+                        parent.generateNewTile(xPos, yPos + 1);
+                    }
                 }
             }
         } else if (parent.getTileAt(xPos, yPos + 1).value == value) {
             if (parent.getTileAt(xPos, yPos + 2).value == value) { // TRE ENS LODRET
                 parent.removeTileAt(xPos, yPos + 1);
                 parent.removeTileAt(xPos, yPos + 2);
-                parent.removeTileAt(xPos, yPos);
 
-                parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
+                setValue(value*2);
                 parent.generateNewTile(xPos, yPos + 1);
                 parent.generateNewTile(xPos, yPos + 2);
             }
