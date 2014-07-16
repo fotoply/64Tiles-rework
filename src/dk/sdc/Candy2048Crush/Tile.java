@@ -387,7 +387,7 @@ public class Tile extends TextView implements View.OnClickListener {
             if (parent.isAdjacentTile(this, selectedTiles.get(0))) {
                 if (getValue() == selectedTiles.get(0).getValue()) {
                     Log.w("update", "updated all values:" + getValue());
-                    parent.updateAllTiles(getValue());
+                    parent.updateAllTiles();
                 } else {
                     Toast.makeText(getContext(), "Swapping tiles", Toast.LENGTH_SHORT).show();
                     parent.swapTiles(this, selectedTiles.get(0), false);
