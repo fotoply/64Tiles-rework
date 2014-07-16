@@ -23,9 +23,7 @@ public class Tile extends TextView implements View.OnClickListener {
     private int yPos;
     private int value;
     private boolean selected;
-    double drawWidth;
-    Paint standardTile;
-    Paint selectedTile;
+
 
 
     public Tile(Grid parent, int x, int y, int value) {
