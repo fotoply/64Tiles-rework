@@ -318,7 +318,7 @@ public class Tile extends TextView implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         //Log.w("OnClick",((Tile)v).toString());
-        Log.w("OnClick","X: "+((Tile)v).getxPos()+"; Y: " + ((Tile)v).getyPos() + "; V: " + ((Tile)v).getValue());
+        Log.w("TILE ONCLICK","X: "+((Tile)v).getxPos()+"; Y: " + ((Tile)v).getyPos() + "; V: " + ((Tile)v).getValue());
         ArrayList<Tile> selectedTiles = parent.getSelectedTiles();
         if (selectedTiles.size() > 1) {
             parent.deselectAll();
@@ -328,7 +328,7 @@ public class Tile extends TextView implements View.OnClickListener {
                 Toast.makeText(getContext(),"Swapping tiles",Toast.LENGTH_SHORT).show();
                 parent.swapTiles(this,selectedTiles.get(0),false);
             } else {
-                Log.w("Tile swapping", "X1: " + this.getxPos() + ", Y1:" + this.getyPos() + "; X2: " + selectedTiles.get(0).getxPos() + ", Y2: " + selectedTiles.get(0).getyPos());
+                Log.w("TILE SWAP", "X1: " + this.getxPos() + ", Y1:" + this.getyPos() + "; X2: " + selectedTiles.get(0).getxPos() + ", Y2: " + selectedTiles.get(0).getyPos());
                 Toast.makeText(getContext(),"Not adjacent",Toast.LENGTH_SHORT).show();
                 parent.deselectAll();
             }
