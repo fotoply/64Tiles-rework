@@ -119,6 +119,7 @@ public class Tile extends TextView implements View.OnClickListener {
      * Finds and executes combos for the current tile and its surroundings. Will propagate into nwe tiles to avoid non-executed combo leftovers.
      */
     public void executeCombo() {
+        Toast.makeText(getContext(), "executing combo", Toast.LENGTH_SHORT).show();
         if (parent.getTileAt(xPos - 1, yPos).value == value) {
             if (parent.getTileAt(xPos - 2, yPos).value == value) {
                 if (parent.getTileAt(xPos + 1, yPos).value == value) {
