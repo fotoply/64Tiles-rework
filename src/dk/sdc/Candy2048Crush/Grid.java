@@ -28,7 +28,6 @@ public class Grid extends GridLayout{
 
     public Grid(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        //addView(new Tile(this, 1, 1, 2));
     }
 
     /**
@@ -46,7 +45,11 @@ public class Grid extends GridLayout{
         }
         for(int i = 0; i < tileList.size(); i++) {
             tileList.get(i).updateTile();
-            tileList.get(i).setText("" + tileList.get(i).getValue());
+            if(tileList.get(i).getValue() == -1 || tileList.get(i).getText() == "-1")
+            {
+                Log.w("TILE", "INVALID TILE FOUND; REGENERATING");
+                generateNewTile(tileList.get(i).getxPos(),tileList.get(i).getyPos());
+            }
         }
     }
 
@@ -71,23 +74,23 @@ public class Grid extends GridLayout{
         if(getTileAt(x,y).getValue() != -1) {
             removeTileAt(x,y);
         }
-        Tile tempTile = new Tile(this,x,y,-1);
+        tileList.add(new Tile(this,x,y,-1));
+        int cuTile = tileList.size()-1;
         Random rng = new Random();
-        tempTile.setValue(tileValues[rng.nextInt(tileValues.length)]);
-        tileList.add(tempTile);
+        tileList.get(cuTile).setValue(tileValues[rng.nextInt(tileValues.length)]);
         if(update) {
-            tileList.get(tileList.size() - 1).updateTile();
+            tileList.get(cuTile).updateTile();
         }
         Spec row = GridLayout.spec(y, 1);
         Spec colspan = GridLayout.spec(x, 1);
         GridLayout.LayoutParams gridLayoutParam = new GridLayout.LayoutParams(row,colspan);
         gridLayoutParam.setMargins(5,5,5,5);
-        tileList.get(tileList.size()-1).layout(0,0,125,125);
+        tileList.get(cuTile).layout(0,0,125,125);
         //Log.w("Creation", tempTile.getParent().toString());
         try {
-            addView(tileList.get(tileList.size() - 1), gridLayoutParam);
-            final Tile tempT = tileList.get(tileList.size()-1);
-            tileList.get(tileList.size()-1).setOnClickListener(new OnClickListener() {
+            addView(tileList.get(cuTile), gridLayoutParam);
+            final Tile tempT = tileList.get(cuTile);
+            tileList.get(cuTile).setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     tempT.onClick(v);
@@ -98,7 +101,7 @@ public class Grid extends GridLayout{
         catch (Exception e) {
 
         }
-        return tempTile;
+        return tileList.get(cuTile);
 
         /*Spec row = GridLayout.spec(y, 1);
         Spec colspan = GridLayout.spec(x, 1);
@@ -189,9 +192,6 @@ public class Grid extends GridLayout{
         int tempValue = a.getValue();
         a.setValue(b.getValue());
         b.setValue(tempValue);
-
-        a.setText("" + a.getValue());
-        b.setText("" + b.getValue());
 
         if (restore) {
             //TODO: isGameOver
