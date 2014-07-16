@@ -131,7 +131,6 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.tileList.add(new Tile(parent, xPos, yPos, value * 8));
                         parent.generateNewTile(xPos - 1, yPos);
                         parent.generateNewTile(xPos - 2, yPos);
-
                         parent.generateNewTile(xPos + 1, yPos);
                         parent.generateNewTile(xPos + 2, yPos);
                     } else { // FIRE ENS
@@ -320,6 +319,12 @@ public class Tile extends TextView implements View.OnClickListener {
         //Log.w("OnClick",((Tile)v).toString());
         Log.w("TILE ONCLICK","X: "+((Tile)v).getxPos()+"; Y: " + ((Tile)v).getyPos() + "; V: " + ((Tile)v).getValue());
         ArrayList<Tile> selectedTiles = parent.getSelectedTiles();
+
+        if(selectedTiles.get(0) == this) {
+            setSelected(false);
+            return;
+        }
+
         if (selectedTiles.size() > 1) {
             parent.deselectAll();
             Toast.makeText(getContext(), "Error: too many selected, deselecting all", Toast.LENGTH_LONG).show();
