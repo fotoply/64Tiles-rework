@@ -276,17 +276,18 @@ public class Tile extends TextView implements View.OnClickListener {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+        if(isSelected()) {
+            this.setBackgroundColor(Color.DKGRAY);
 
-        if (isSelected()) {
-            Paint p = new Paint();
+            /*Paint p = new Paint();
             p.setStrokeWidth(5f);
             p.setColor(Color.CYAN);
             canvas.drawLine(0, 0, width, 0, p);
             canvas.drawLine(0, 0, 0, height, p);
             canvas.drawLine(0, height, width, height, p);
-            canvas.drawLine(width, 0, width, height, p);
+            canvas.drawLine(width, 0, width, height, p);*/
         }
+        super.onDraw(canvas);
 
         switch (value) {
             case 2:
@@ -372,11 +373,11 @@ public class Tile extends TextView implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         //Log.w("OnClick",((Tile)v).toString());
-        Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue());
         ArrayList<Tile> selectedTiles = parent.getSelectedTiles();
 
         if (selectedTiles.size() == 1 && selectedTiles.get(0) == this) {
             setSelected(false);
+            Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; Selected: " + ((Tile) v).isSelected());
             return;
         }
 
@@ -399,7 +400,9 @@ public class Tile extends TextView implements View.OnClickListener {
             }
         } else {
             setSelected(true);
+            setBackgroundColor(Color.DKGRAY);
         }
+        Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; Selected: " + ((Tile) v).isSelected());
     }
 
     public int getxPos() {
