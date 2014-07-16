@@ -80,6 +80,7 @@ public class Grid extends GridLayout{
         Spec row = GridLayout.spec(y, 1);
         Spec colspan = GridLayout.spec(x, 1);
         GridLayout.LayoutParams gridLayoutParam = new GridLayout.LayoutParams(row,colspan);
+        gridLayoutParam.setMargins(5,5,5,5);
         tileList.get(tileList.size()-1).layout(0,0,125,125);
         //Log.w("Creation", tempTile.getParent().toString());
         try {
@@ -91,7 +92,7 @@ public class Grid extends GridLayout{
                     tempT.onClick(v);
                 }
             });
-            Log.w("Creation", tempTile.getParent().toString());
+            //Log.w("Creation", tempTile.getParent().toString());
         }
         catch (Exception e) {
 
