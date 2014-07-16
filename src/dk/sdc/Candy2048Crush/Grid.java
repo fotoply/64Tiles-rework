@@ -46,6 +46,7 @@ public class Grid extends GridLayout{
         }
         for(int i = 0; i < tileList.size(); i++) {
             tileList.get(i).updateTile();
+            tileList.get(i).setText("" + tileList.get(i).getValue());
         }
     }
 
@@ -188,6 +189,10 @@ public class Grid extends GridLayout{
         int tempValue = a.getValue();
         a.setValue(b.getValue());
         b.setValue(tempValue);
+
+        a.setText("" + a.getValue());
+        b.setText("" + b.getValue());
+
         if (restore) {
             //TODO: isGameOver
         } else {
