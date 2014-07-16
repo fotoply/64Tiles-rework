@@ -21,6 +21,7 @@ public class Tile extends View implements View.OnClickListener {
     double drawWidth;
     Paint standardTile;
     Paint selectedTile;
+    Paint textColor;
 
 
     public Tile(Grid parent, int x, int y, int value) {
@@ -42,9 +43,12 @@ public class Tile extends View implements View.OnClickListener {
         super.onDraw(canvas);
         standardTile = new Paint();
         selectedTile = new Paint();
+        textColor = new Paint();
         drawWidth = (double) ((canvas.getWidth()-40-8*5)/8);
         standardTile.setColor(Color.LTGRAY);
         selectedTile.setColor(Color.BLUE);
+        textColor.setColor(Color.BLACK);
+        textColor.setTextSize((float) textSize(value, drawWidth));
 
         if (isSelected()){
             canvas.drawRect((float)(20+drawWidth*xPos+5*xPos), (float)(20+drawWidth*yPos+5*yPos), (float)((20+drawWidth*xPos+5*xPos)+drawWidth), (float)((20+drawWidth*yPos+5*yPos)+drawWidth), selectedTile );
@@ -52,6 +56,22 @@ public class Tile extends View implements View.OnClickListener {
             canvas.drawRect((float)(20+drawWidth*xPos+5*xPos), (float)(20+drawWidth*yPos+5*yPos), (float)((20+drawWidth*xPos+5*xPos)+drawWidth), (float)((20+drawWidth*yPos+5*yPos)+drawWidth), standardTile );
         }
 
+        canvas.drawText(""+value, (float)(20+drawWidth*xPos+5*xPos), (float)(20+drawWidth*(yPos+1)+5*yPos-10), textColor);
+
+    }
+    
+    public float textSize(int value, double drawWidth){
+        String text = "" + value;
+        Paint paint = new Paint();
+        int size = 0;
+        if (text.length() == 1 ){
+            size = (int) (drawWidth/1.5);
+        } else {
+            do {
+                paint.setTextSize(++ size);
+            } while (paint.measureText(text) < drawWidth - 20);
+        }
+        return size;
     }
 
     /**
