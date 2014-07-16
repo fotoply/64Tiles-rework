@@ -318,7 +318,7 @@ public class Tile extends TextView implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Log.w("OnClick",((Tile)v).toString());
-        Log.w("OnClick","X: "+((Tile)v).getxPos()+"; Y: " + ((Tile)v).getyPos());
+        //Log.w("OnClick","X: "+((Tile)v).getxPos()+"; Y: " + ((Tile)v).getyPos());
         ArrayList<Tile> selectedTiles = parent.getSelectedTiles();
         if (selectedTiles.size() > 1) {
             parent.deselectAll();
