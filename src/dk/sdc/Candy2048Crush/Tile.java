@@ -68,6 +68,7 @@ public class Tile extends TextView implements View.OnClickListener {
      * @return Returns true if a combo is found, otherwise returns false
      */
     public boolean isComboAvailableVertical() {
+        Log.w("COMBO", "looking for horizontal combo at:" + xPos + "," + yPos);
         int tilesFound = 1;
         if (parent.getTileAt(xPos, yPos - 1).value == value) {
             tilesFound++;
@@ -90,6 +91,7 @@ public class Tile extends TextView implements View.OnClickListener {
     }
 
     public boolean isComboAvailableHorisontal() {
+        Log.w("COMBO", "looking for horizontal combo at:" + xPos + "," + yPos);
         int tilesFound = 1;
 
         if (parent.getTileAt(xPos - 1, yPos).value == value) {
@@ -386,8 +388,13 @@ public class Tile extends TextView implements View.OnClickListener {
             Toast.makeText(getContext(), "Error: too many selected, deselecting all", Toast.LENGTH_LONG).show();
         } else if (selectedTiles.size() == 1) {
             if (parent.isAdjacentTile(this, selectedTiles.get(0))) {
-                Toast.makeText(getContext(), "Swapping tiles", Toast.LENGTH_SHORT).show();
-                parent.swapTiles(this, selectedTiles.get(0), false);
+                if (getValue() == selectedTiles.get(0).getValue()) {
+                    Log.w("update", "updated all values:" + getValue());
+                    parent.updateTilesByValue(getValue());
+                } else {
+                    Toast.makeText(getContext(), "Swapping tiles", Toast.LENGTH_SHORT).show();
+                    parent.swapTiles(this, selectedTiles.get(0), false);
+                }
             } else {
                 Log.w("TILE SWAP", "X1: " + this.getxPos() + ", Y1:" + this.getyPos() + "; X2: " + selectedTiles.get(0).getxPos() + ", Y2: " + selectedTiles.get(0).getyPos());
                 Toast.makeText(getContext(), "Not adjacent", Toast.LENGTH_SHORT).show();
