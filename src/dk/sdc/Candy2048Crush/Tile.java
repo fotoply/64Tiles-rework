@@ -257,6 +257,27 @@ public class Tile extends TextView implements View.OnClickListener {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        switch (value) {
+            case 2:
+                this.setBackgroundColor(Color.BLUE);
+                break;
+            case 4:
+                this.setBackgroundColor(Color.CYAN + Color.rgb(100, 100, 100));
+                break;
+            case 8:
+                this.setBackgroundColor(Color.DKGRAY);
+                break;
+            case 16:
+                this.setBackgroundColor(Color.YELLOW + Color.rgb(40, 20, 100));
+                break;
+            case 32:
+                this.setBackgroundColor(Color.MAGENTA);
+                break;
+            default:
+                this.setBackgroundColor(Color.RED);
+        }
+
     }
 
     /*
