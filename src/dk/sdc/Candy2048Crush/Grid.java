@@ -148,7 +148,7 @@ public class Grid extends GridLayout{
      */
     public Tile getTileAt(int x, int y) {
         for(int i = 0; i < tileList.size(); i++) {
-            Tile temp = tileList.get(i);
+            Tile temp = new Tile(this,-1,-1,-1);
             if(temp.getxPos() == x && temp.getyPos() == y) {
                 return tileList.get(i);
             }
