@@ -387,8 +387,8 @@ public class Tile extends TextView implements View.OnClickListener {
         } else if (selectedTiles.size() == 1) {
             if (parent.isAdjacentTile(this, selectedTiles.get(0))) {
                 if (getValue() == selectedTiles.get(0).getValue()) {
-                    Log.w("update", "updated all values:" + getValue());
-                    parent.updateAllTiles();
+                    Log.w("update", "respawned all tiles with value:" + getValue());
+                    parent.respawnTilesByValue(getValue());
                 } else {
                     Toast.makeText(getContext(), "Swapping tiles", Toast.LENGTH_SHORT).show();
                     parent.swapTiles(this, selectedTiles.get(0), false);
@@ -402,6 +402,7 @@ public class Tile extends TextView implements View.OnClickListener {
             setSelected(true);
             setBackgroundColor(Color.DKGRAY);
         }
+        invalidate();
         Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; Selected: " + ((Tile) v).isSelected());
     }
 

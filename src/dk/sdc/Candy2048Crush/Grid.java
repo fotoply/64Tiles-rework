@@ -130,6 +130,43 @@ public class Grid extends GridLayout{
     }
 
     /**
+     * respawns a tile from scratch from coordinates and a value
+     * @param x coordinate of the tile
+     * @param y coordinate of the tile
+     * @param value of the tile
+     * @return the new tile
+     */
+    public Tile respawnTile(int x, int y, int value){
+        if(getTileAt(x,y).getValue() != -1) {
+            removeTileAt(x,y);
+        }
+        tileList.add(new Tile(this,x,y,value));
+        Log.w("Regenerate tile", "Regenerated tile at: " + x + "," + y );
+        int cuTile = tileList.size()-1;
+        Spec row = GridLayout.spec(y, 1);
+        Spec colspan = GridLayout.spec(x, 1);
+        GridLayout.LayoutParams gridLayoutParam = new GridLayout.LayoutParams(row,colspan);
+        gridLayoutParam.setMargins(5,5,5,5);
+        tileList.get(cuTile).layout(0,0,125,125);
+        //Log.w("Creation", tempTile.getParent().toString());
+        try {
+            addView(tileList.get(cuTile), gridLayoutParam);
+            final Tile tempT = tileList.get(cuTile);
+            tileList.get(cuTile).setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tempT.onClick(v);
+                }
+            });
+            //Log.w("Creation", tempTile.getParent().toString());
+        }
+        catch (Exception e) {
+
+        }
+        return tileList.get(cuTile);
+    }
+
+    /**
      * Checks if a tile is adjacent to another
      * @param tile1 First tile
      * @param tile2 Second tile
@@ -205,6 +242,8 @@ public class Grid extends GridLayout{
         b.setValue(tempValue);
 
         if (restore) {
+            a.updateTile();
+            b.updateTile();
             //TODO: isGameOver
         } else {
             if (!a.isComboAvailableHorisontal() && !a.isComboAvailableVertical() && !b.isComboAvailableHorisontal() && !b.isComboAvailableVertical()) {
@@ -230,9 +269,27 @@ public class Grid extends GridLayout{
             }
         }
     }
+
+    /**
+     * calls updateTile on all tiles
+     */
     public void updateAllTiles(){
         for (int i = 0; i < tileList.size(); i++) {
                 tileList.get(i).updateTile();
+        }
+    }
+
+    /**
+     * respawns all tiles with value
+     * @param value of the tiles that respawn
+     */
+    public void respawnTilesByValue(int value){
+        Tile temp;
+        for (int i = 0; i < tileList.size(); i++) {
+            if (tileList.get(i).getValue() == value){
+                temp = tileList.get(i);
+                respawnTile(temp.getxPos(),temp.getyPos(), temp.getValue());
+            }
         }
     }
 }
