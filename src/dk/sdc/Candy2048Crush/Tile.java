@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
@@ -39,6 +40,7 @@ public class Tile extends TextView implements View.OnClickListener {
         this.setHeight(125);
         this.setText(value + "");
         this.setBackgroundColor(Color.BLUE);
+        this.setGravity(Gravity.CENTER);
     }
 
     /*@Override
