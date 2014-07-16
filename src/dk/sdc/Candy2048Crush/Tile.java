@@ -117,18 +117,18 @@ public class Tile extends TextView implements View.OnClickListener {
     public void updateTile() {
         this.setText(value + "");
         if (isComboAvailableHorisontal()) {
-            executeCombo();
+            executeComboHorizontal();
         }
         if (isComboAvailableVertical()) {
-            executeCombo();
+            executeComboVertical();
         }
     }
 
     /**
      * Finds and executes combos for the current tile and its surroundings. Will propagate into nwe tiles to avoid non-executed combo leftovers.
      */
-    public void executeCombo() {
-        Log.w("COMBO", "executing combo at:" + xPos + "," + yPos);
+    public void executeComboHorizontal() {
+        Log.w("COMBO", "executing horizontal combo at:" + xPos + "," + yPos);
         if (parent.getTileAt(xPos - 1, yPos).value == value) {
             if (parent.getTileAt(xPos - 2, yPos).value == value) {
                 if (parent.getTileAt(xPos + 1, yPos).value == value) {
@@ -143,6 +143,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.generateNewTile(xPos - 2, yPos);
                         parent.generateNewTile(xPos + 1, yPos);
                         parent.generateNewTile(xPos + 2, yPos);
+                        updateTile();
                     } else { // FIRE ENS
                         parent.removeTileAt(xPos - 1, yPos);
                         parent.removeTileAt(xPos - 2, yPos);
@@ -152,6 +153,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.generateNewTile(xPos - 1, yPos);
                         parent.generateNewTile(xPos - 2, yPos);
                         parent.generateNewTile(xPos + 1, yPos);
+                        updateTile();
                     }
                 } else { // TRE ENS
                     parent.removeTileAt(xPos - 1, yPos);
@@ -160,6 +162,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     setValue(value * 2);
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos - 2, yPos);
+                    updateTile();
                 }
             } else if (parent.getTileAt(xPos + 1, yPos).value == value) {
                 if (parent.getTileAt(xPos + 2, yPos).value == value) { // FIRE ENS
@@ -171,6 +174,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos + 1, yPos);
                     parent.generateNewTile(xPos + 2, yPos);
+                    updateTile();
                 } else { // TRE ENS
                     parent.removeTileAt(xPos - 1, yPos);
                     parent.removeTileAt(xPos + 1, yPos);
@@ -178,6 +182,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     setValue(value * 2);
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos + 1, yPos);
+                    updateTile();
                 }
             }
         } else if (parent.getTileAt(xPos + 1, yPos).value == value) {
@@ -188,8 +193,15 @@ public class Tile extends TextView implements View.OnClickListener {
                 setValue(value * 2);
                 parent.generateNewTile(xPos + 1, yPos);
                 parent.generateNewTile(xPos + 2, yPos);
+                updateTile();
             }
-        } else if (parent.getTileAt(xPos, yPos - 1).value == value) {
+        }
+        Log.w("COMBO", "finished horizontal combo at:" + xPos + "," + yPos);
+    }
+
+    public void executeComboVertical() {
+        Log.w("COMBO", "executing vertical combo at:" + xPos + "," + yPos);
+        if (parent.getTileAt(xPos, yPos - 1).value == value) {
             if (parent.getTileAt(xPos, yPos - 2).value == value) {
                 if (parent.getTileAt(xPos, yPos + 1).value == value) {
                     if (parent.getTileAt(xPos, yPos + 2).value == value) { // FEM ens LODRET
@@ -203,6 +215,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.generateNewTile(xPos, yPos - 2);
                         parent.generateNewTile(xPos, yPos + 1);
                         parent.generateNewTile(xPos, yPos + 2);
+                        updateTile();
                     } else { // FIRE ENS LODRET
                         parent.removeTileAt(xPos, yPos - 1);
                         parent.removeTileAt(xPos, yPos - 2);
@@ -212,6 +225,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos - 2);
                         parent.generateNewTile(xPos, yPos + 1);
+                        updateTile();
                     }
                 } else { // TRE ENS LODRET
                     parent.removeTileAt(xPos, yPos - 1);
@@ -220,6 +234,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     setValue(value * 2);
                     parent.generateNewTile(xPos, yPos - 1);
                     parent.generateNewTile(xPos, yPos - 2);
+                    updateTile();
                 }
             } else {
                 if (parent.getTileAt(xPos, yPos + 1).value == value) {
@@ -232,6 +247,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos + 1);
                         parent.generateNewTile(xPos, yPos + 2);
+                        updateTile();
                     } else { // TRE ENS LODRET
                         parent.removeTileAt(xPos, yPos - 1);
                         parent.removeTileAt(xPos, yPos + 1);
@@ -239,6 +255,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         setValue(value * 2);
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos + 1);
+                        updateTile();
                     }
                 }
             }
@@ -250,8 +267,10 @@ public class Tile extends TextView implements View.OnClickListener {
                 setValue(value * 2);
                 parent.generateNewTile(xPos, yPos + 1);
                 parent.generateNewTile(xPos, yPos + 2);
+                updateTile();
             }
         }
+        Log.w("COMBO", "finished horizontal combo at:" + xPos + "," + yPos);
     }
 
     @Override

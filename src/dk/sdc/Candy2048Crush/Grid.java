@@ -202,19 +202,19 @@ public class Grid extends GridLayout{
                 deselectAll();
             }
             if (a.isComboAvailableHorisontal()){
-                a.executeCombo();
+                a.executeComboHorizontal();
                 deselectAll();
             }
             if (a.isComboAvailableVertical()){
-                a.executeCombo();
+                a.executeComboHorizontal();
                 deselectAll();
             }
             if (b.isComboAvailableHorisontal()){
-                b.executeCombo();
+                b.executeComboHorizontal();
                 deselectAll();
             }
             if (b.isComboAvailableVertical()){
-                b.executeCombo();
+                b.executeComboHorizontal();
                 deselectAll();
             }
         }
