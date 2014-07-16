@@ -131,7 +131,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos + 2, yPos);
                         parent.removeTileAt(xPos, yPos);
 
-                        parent.tileList.add(new Tile(parent, xPos, yPos, value * 8));
+                        parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 8));
                         parent.generateNewTile(xPos - 1, yPos);
                         parent.generateNewTile(xPos - 2, yPos);
                         parent.generateNewTile(xPos + 1, yPos);
@@ -142,7 +142,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos + 1, yPos);
                         parent.removeTileAt(xPos, yPos);
 
-                        parent.tileList.add(new Tile(parent, xPos, yPos, value * 4));
+                        parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 4));
                         parent.generateNewTile(xPos - 1, yPos);
                         parent.generateNewTile(xPos - 2, yPos);
                         parent.generateNewTile(xPos + 1, yPos);
@@ -152,7 +152,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     parent.removeTileAt(xPos - 2, yPos);
                     parent.removeTileAt(xPos, yPos);
 
-                    parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                    parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos - 2, yPos);
                 }
@@ -163,7 +163,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     parent.removeTileAt(xPos + 2, yPos);
                     parent.removeTileAt(xPos, yPos);
 
-                    parent.tileList.add(new Tile(parent, xPos, yPos, value * 4));
+                    parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 4));
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos + 1, yPos);
                     parent.generateNewTile(xPos + 2, yPos);
@@ -172,7 +172,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     parent.removeTileAt(xPos + 1, yPos);
                     parent.removeTileAt(xPos, yPos);
 
-                    parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                    parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos + 1, yPos);
                 }
@@ -183,7 +183,7 @@ public class Tile extends TextView implements View.OnClickListener {
                 parent.removeTileAt(xPos + 1, yPos);
                 parent.removeTileAt(xPos, yPos);
 
-                parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
                 parent.generateNewTile(xPos + 1, yPos);
                 parent.generateNewTile(xPos + 2, yPos);
             }
@@ -197,7 +197,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos, yPos + 2);
                         parent.removeTileAt(xPos, yPos);
 
-                        parent.tileList.add(new Tile(parent, xPos, yPos, value * 8));
+                        parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 8));
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos - 2);
                         parent.generateNewTile(xPos, yPos + 1);
@@ -208,7 +208,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos, yPos + 1);
                         parent.removeTileAt(xPos, yPos);
 
-                        parent.tileList.add(new Tile(parent, xPos, yPos, value * 4));
+                        parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 4));
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos - 2);
                         parent.generateNewTile(xPos, yPos + 1);
@@ -218,7 +218,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     parent.removeTileAt(xPos, yPos - 2);
                     parent.removeTileAt(xPos, yPos);
 
-                    parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                    parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
                     parent.generateNewTile(xPos, yPos - 1);
                     parent.generateNewTile(xPos, yPos - 2);
                 }
@@ -230,7 +230,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos, yPos + 1);
                         parent.removeTileAt(xPos, yPos);
 
-                        parent.tileList.add(new Tile(parent, xPos, yPos, value * 4));
+                        parent.tileList.add(new Tile(parent, xPos, yPos, this.value * 4));
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos + 1);
                         parent.generateNewTile(xPos, yPos + 2);
@@ -240,7 +240,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     parent.removeTileAt(xPos, yPos + 1);
                     parent.removeTileAt(xPos, yPos);
 
-                    parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                    parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
                     parent.generateNewTile(xPos, yPos - 1);
                     parent.generateNewTile(xPos, yPos + 1);
                 }
@@ -251,7 +251,7 @@ public class Tile extends TextView implements View.OnClickListener {
                 parent.removeTileAt(xPos, yPos + 2);
                 parent.removeTileAt(xPos, yPos);
 
-                parent.tileList.add(new Tile(parent, xPos, yPos, value * 2));
+                parent.tileList.add(new Tile(parent, xPos, yPos,  this.value * 2));
                 parent.generateNewTile(xPos, yPos + 1);
                 parent.generateNewTile(xPos, yPos + 2);
             }
