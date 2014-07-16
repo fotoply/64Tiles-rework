@@ -59,7 +59,14 @@ public class Tile extends View implements View.OnClickListener {
         canvas.drawText(""+value, (float)(20+drawWidth*xPos+5*xPos), (float)(20+drawWidth*(yPos+1)+5*yPos-10), textColor);
 
     }
-    
+
+    /**
+     * Set text size so it is always inside the tile.
+     * @param value Value of tile.
+     * @param drawWidth The width of a tile.
+     * @return textSize so that always can be inside the tile.
+     */
+
     public float textSize(int value, double drawWidth){
         String text = "" + value;
         Paint paint = new Paint();
