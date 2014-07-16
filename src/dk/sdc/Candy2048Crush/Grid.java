@@ -230,11 +230,9 @@ public class Grid extends GridLayout{
             }
         }
     }
-    public void updateTilesByValue (int value){
+    public void updateAllTiles(){
         for (int i = 0; i < tileList.size(); i++) {
-            if (tileList.get(i).getValue() == value) {
                 tileList.get(i).updateTile();
-            }
         }
     }
 }

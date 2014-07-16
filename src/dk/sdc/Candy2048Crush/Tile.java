@@ -3,12 +3,9 @@ package dk.sdc.Candy2048Crush;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -385,12 +382,12 @@ public class Tile extends TextView implements View.OnClickListener {
 
         if (selectedTiles.size() > 1) {
             parent.deselectAll();
-            Toast.makeText(getContext(), "Error: too many selected, deselecting all", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Error: too many selected, deselecting all", Toast.LENGTH_SHORT).show();
         } else if (selectedTiles.size() == 1) {
             if (parent.isAdjacentTile(this, selectedTiles.get(0))) {
                 if (getValue() == selectedTiles.get(0).getValue()) {
                     Log.w("update", "updated all values:" + getValue());
-                    parent.updateTilesByValue(getValue());
+                    parent.updateAllTiles(getValue());
                 } else {
                     Toast.makeText(getContext(), "Swapping tiles", Toast.LENGTH_SHORT).show();
                     parent.swapTiles(this, selectedTiles.get(0), false);
