@@ -196,16 +196,24 @@ public class Grid extends GridLayout{
         if (restore) {
             //TODO: isGameOver
         } else {
-            if (!a.isComboAvailable() && !b.isComboAvailable()) {
+            if (!a.isComboAvailableHorisontal() && !a.isComboAvailableVertical() && !b.isComboAvailableHorisontal() && !b.isComboAvailableVertical()) {
                 Toast.makeText(getContext(), "Error: No combos found, reverting", Toast.LENGTH_SHORT).show();
                 swapTiles(a, b, true);
                 deselectAll();
             }
-            if (a.isComboAvailable()){
+            if (a.isComboAvailableHorisontal()){
                 a.executeCombo();
                 deselectAll();
             }
-            if (b.isComboAvailable()){
+            if (a.isComboAvailableVertical()){
+                a.executeCombo();
+                deselectAll();
+            }
+            if (b.isComboAvailableHorisontal()){
+                b.executeCombo();
+                deselectAll();
+            }
+            if (b.isComboAvailableVertical()){
                 b.executeCombo();
                 deselectAll();
             }

@@ -65,7 +65,7 @@ public class Tile extends TextView implements View.OnClickListener {
      *
      * @return Returns true if a combo is found, otherwise returns false
      */
-    public boolean isComboAvailable() {
+    public boolean isComboAvailableVertical() {
         int tilesFound = 1;
         if (parent.getTileAt(xPos, yPos - 1).value == value) {
             tilesFound++;
@@ -82,9 +82,13 @@ public class Tile extends TextView implements View.OnClickListener {
         if (tilesFound >= 3) {
             Log.w("COMBO", "found vertical combo at:" + xPos + "," + yPos);
             return true;
+        } else {
+            return false;
         }
+    }
 
-        tilesFound = 1;
+    public boolean isComboAvailableHorisontal() {
+        int tilesFound = 1;
 
         if (parent.getTileAt(xPos - 1, yPos).value == value) {
             tilesFound++;
@@ -101,17 +105,21 @@ public class Tile extends TextView implements View.OnClickListener {
         if (tilesFound >= 3) {
             Log.w("COMBO", "found horizontal combo at:" + xPos + "," + yPos);
             return true;
+        } else {
+            return false;
         }
-
-        return false;
     }
+
 
     /**
      * Will execute the combo for a tile if any is available.
      */
     public void updateTile() {
         this.setText(value + "");
-        if (isComboAvailable()) {
+        if (isComboAvailableHorisontal()) {
+            executeCombo();
+        }
+        if (isComboAvailableVertical()) {
             executeCombo();
         }
     }
@@ -130,7 +138,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos + 1, yPos);
                         parent.removeTileAt(xPos + 2, yPos);
 
-                        setValue(value*8);
+                        setValue(value * 8);
                         parent.generateNewTile(xPos - 1, yPos);
                         parent.generateNewTile(xPos - 2, yPos);
                         parent.generateNewTile(xPos + 1, yPos);
@@ -140,7 +148,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos - 2, yPos);
                         parent.removeTileAt(xPos + 1, yPos);
 
-                        setValue(value*4);
+                        setValue(value * 4);
                         parent.generateNewTile(xPos - 1, yPos);
                         parent.generateNewTile(xPos - 2, yPos);
                         parent.generateNewTile(xPos + 1, yPos);
@@ -149,7 +157,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     parent.removeTileAt(xPos - 1, yPos);
                     parent.removeTileAt(xPos - 2, yPos);
 
-                    setValue(value*2);
+                    setValue(value * 2);
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos - 2, yPos);
                 }
@@ -159,7 +167,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     parent.removeTileAt(xPos + 1, yPos);
                     parent.removeTileAt(xPos + 2, yPos);
 
-                    setValue(value*4);
+                    setValue(value * 4);
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos + 1, yPos);
                     parent.generateNewTile(xPos + 2, yPos);
@@ -167,7 +175,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     parent.removeTileAt(xPos - 1, yPos);
                     parent.removeTileAt(xPos + 1, yPos);
 
-                    setValue(value*2);
+                    setValue(value * 2);
                     parent.generateNewTile(xPos - 1, yPos);
                     parent.generateNewTile(xPos + 1, yPos);
                 }
@@ -177,7 +185,7 @@ public class Tile extends TextView implements View.OnClickListener {
                 parent.removeTileAt(xPos + 2, yPos);
                 parent.removeTileAt(xPos + 1, yPos);
 
-                setValue(value*2);
+                setValue(value * 2);
                 parent.generateNewTile(xPos + 1, yPos);
                 parent.generateNewTile(xPos + 2, yPos);
             }
@@ -190,7 +198,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos, yPos + 1);
                         parent.removeTileAt(xPos, yPos + 2);
 
-                        setValue(value*8);
+                        setValue(value * 8);
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos - 2);
                         parent.generateNewTile(xPos, yPos + 1);
@@ -200,7 +208,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos, yPos - 2);
                         parent.removeTileAt(xPos, yPos + 1);
 
-                        setValue(value*4);
+                        setValue(value * 4);
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos - 2);
                         parent.generateNewTile(xPos, yPos + 1);
@@ -209,7 +217,7 @@ public class Tile extends TextView implements View.OnClickListener {
                     parent.removeTileAt(xPos, yPos - 1);
                     parent.removeTileAt(xPos, yPos - 2);
 
-                    setValue(value*2);
+                    setValue(value * 2);
                     parent.generateNewTile(xPos, yPos - 1);
                     parent.generateNewTile(xPos, yPos - 2);
                 }
@@ -220,7 +228,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos, yPos + 1);
                         parent.removeTileAt(xPos, yPos + 2);
 
-                        setValue(value*4);
+                        setValue(value * 4);
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos + 1);
                         parent.generateNewTile(xPos, yPos + 2);
@@ -228,7 +236,7 @@ public class Tile extends TextView implements View.OnClickListener {
                         parent.removeTileAt(xPos, yPos - 1);
                         parent.removeTileAt(xPos, yPos + 1);
 
-                        setValue(value*2);
+                        setValue(value * 2);
                         parent.generateNewTile(xPos, yPos - 1);
                         parent.generateNewTile(xPos, yPos + 1);
                     }
@@ -239,7 +247,7 @@ public class Tile extends TextView implements View.OnClickListener {
                 parent.removeTileAt(xPos, yPos + 1);
                 parent.removeTileAt(xPos, yPos + 2);
 
-                setValue(value*2);
+                setValue(value * 2);
                 parent.generateNewTile(xPos, yPos + 1);
                 parent.generateNewTile(xPos, yPos + 2);
             }
@@ -316,7 +324,7 @@ public class Tile extends TextView implements View.OnClickListener {
         Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue());
         ArrayList<Tile> selectedTiles = parent.getSelectedTiles();
 
-        if(selectedTiles.size() == 1 && selectedTiles.get(0) == this) {
+        if (selectedTiles.size() == 1 && selectedTiles.get(0) == this) {
             setSelected(false);
             return;
         }
@@ -360,6 +368,6 @@ public class Tile extends TextView implements View.OnClickListener {
 
     public void setValue(int value) {
         this.value = value;
-        this.setText("" + value);
+        updateTile();
     }
 }
