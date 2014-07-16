@@ -278,14 +278,14 @@ public class Tile extends TextView implements View.OnClickListener {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if(isSelected()) {
+        if (isSelected()) {
             Paint p = new Paint();
             p.setStrokeWidth(5f);
             p.setColor(Color.CYAN);
-            canvas.drawLine(0,0,width,0,p);
-            canvas.drawLine(0,0,0,height,p);
-            canvas.drawLine(0,height,width,height,p);
-            canvas.drawLine(width,0,width,height,p);
+            canvas.drawLine(0, 0, width, 0, p);
+            canvas.drawLine(0, 0, 0, height, p);
+            canvas.drawLine(0, height, width, height, p);
+            canvas.drawLine(width, 0, width, height, p);
         }
 
         switch (value) {
@@ -424,6 +424,6 @@ public class Tile extends TextView implements View.OnClickListener {
 
     public void setValue(int value) {
         this.value = value;
-        setText(""+value);
+        setText("" + value);
     }
 }
