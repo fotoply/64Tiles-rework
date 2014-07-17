@@ -1,4 +1,4 @@
-package dk.sdc.Candy2048Crush;
+package dk.sdc.game64Tiles;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -310,6 +310,7 @@ public class Grid extends GridLayout {
             //respawnAllTiles();
         }
         parent.setSavedHighscore();
+        parent.setScore(this.getHighscore());
     }
 
     /**

@@ -1,19 +1,14 @@
-package dk.sdc.Candy2048Crush;
+package dk.sdc.game64Tiles;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.lang.reflect.Field;
 
 /**
  * Created by sdc on 7/15/14.
@@ -112,6 +107,11 @@ public class GameActivity extends Activity {
         TextView tv = (TextView)findViewById(R.id.textViewHighScore);
         tv.setText("Highscore: " + sp.getInt("highscore",0));
         editor.commit();
+    }
+
+    public void setScore(int score) {
+        TextView tv = (TextView)findViewById(R.id.textViewScore);
+        tv.setText("Score: " + score);
     }
 
     public int getSavedHighscore() {

@@ -7,20 +7,28 @@
 
     <view android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          class="dk.sdc.Candy2048Crush.Grid" android:id="@+id/cvGameGrid" android:layout_gravity="center"
+          class="dk.sdc.game64Tiles.Grid" android:id="@+id/cvGameGrid" android:layout_gravity="center"
           android:layout_weight="1" android:clickable="false"
             android:verticalSpacing="10dp"
             android:horizontalSpacing="10dp"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_weight="1">
+            android:layout_height="wrap_content">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Score:"
+                android:id="@+id/textViewScore" android:layout_gravity="left" android:layout_weight="1"
+                android:gravity="center_horizontal"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Highscore"
-                android:id="@+id/textViewHighScore" android:layout_gravity="center_horizontal|bottom" android:layout_weight="1"
-                android:textAlignment="center" android:textIsSelectable="false" android:gravity="center"/>
+                android:id="@+id/textViewHighScore"
+                android:textAlignment="center" android:textIsSelectable="false" android:gravity="center"
+                android:layout_gravity="right" android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"

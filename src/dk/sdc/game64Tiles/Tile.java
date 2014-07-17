@@ -1,8 +1,7 @@
-package dk.sdc.Candy2048Crush;
+package dk.sdc.game64Tiles;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
