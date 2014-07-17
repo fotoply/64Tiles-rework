@@ -100,7 +100,6 @@ public class Grid extends GridLayout {
             tileList.get(cuTile).setValue(tileValues[3]);
         }
 
-        //tileList.get(cuTile).setValue(tileValues[rng.nextInt(tileValues.length)]);
         if (update) {
             tileList.get(cuTile).updateTile();
         }
@@ -109,7 +108,6 @@ public class Grid extends GridLayout {
         GridLayout.LayoutParams gridLayoutParam = new GridLayout.LayoutParams(row, colspan);
         gridLayoutParam.setMargins(5, 5, 5, 5);
         tileList.get(cuTile).layout(0, 0, 125, 125);
-        //Log.w("Creation", tempTile.getParent().toString());
         try {
             addView(tileList.get(cuTile), gridLayoutParam);
             final Tile tempT = tileList.get(cuTile);
@@ -119,25 +117,11 @@ public class Grid extends GridLayout {
                     tempT.onClick(v);
                 }
             });
-            //Log.w("Creation", tempTile.getParent().toString());
         } catch (Exception e) {
 
         }
         tileList.get(cuTile).invalidate();
         return tileList.get(cuTile);
-
-        /*Spec row = GridLayout.spec(y, 1);
-        Spec colspan = GridLayout.spec(x, 1);
-        GridLayout.LayoutParams gridLayoutParam = new GridLayout.LayoutParams(row,colspan);
-        final TileTest t = new TileTest(getContext());
-        t.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                t.onTileClick(v);
-            }
-        });
-        addView(t, gridLayoutParam);
-        return null;*/
     }
 
     /**
@@ -255,7 +239,6 @@ public class Grid extends GridLayout {
             tileList.get(i).setSelected(false);
             tileList.get(i).invalidate();
         }
-        //Toast.makeText(getContext(), "Ready to receive input", Toast.LENGTH_SHORT).show(); //TODO remove toast.
     }
 
     /**
@@ -285,7 +268,7 @@ public class Grid extends GridLayout {
             Log.w("TEST", "A1=" + a.isComboAvailableHorisontal() + "; A2=" + a.isComboAvailableVertical() + "; B1=" + b.isComboAvailableHorisontal() + "; B2=" + b.isComboAvailableVertical());
 
             if (!a.isComboAvailableHorisontal() && !a.isComboAvailableVertical() && !b.isComboAvailableHorisontal() && !b.isComboAvailableVertical()) {
-                //Toast.makeText(getContext(), "Error: No combos found, reverting", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "No combos found", Toast.LENGTH_SHORT).show();
                 swapTiles(a, b, true);
                 deselectAll();
             }
@@ -305,7 +288,6 @@ public class Grid extends GridLayout {
                 b.executeComboVertical();
                 deselectAll();
             }
-            //respawnAllTiles(); //TODO
         }
         parent.setSavedHighscore();
         parent.setScore(this.getHighscore());
@@ -319,7 +301,6 @@ public class Grid extends GridLayout {
             tileList.get(i).updateTile();
         }
     }
-    //TODO remove updateAllTiles??
 
     /**
      * Checks if swapping two tiles can cause a combo
@@ -363,7 +344,6 @@ public class Grid extends GridLayout {
 
     /**
      * Checks if there is any combo you can do with remaining tiles.
-     *
      * @return true if there is any possible move that can cause a combo.
      */
     public boolean isGameOver() {
@@ -393,8 +373,6 @@ public class Grid extends GridLayout {
             }
             Log.w("TILE ALL", line);
             line = "";
-            //Log.w("TILE", tileList.get(i).getValue() + ", ");
-            //TODO er printAllTiles kun for debug?
         }
     }
 }
