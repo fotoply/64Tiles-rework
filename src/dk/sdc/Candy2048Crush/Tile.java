@@ -379,6 +379,7 @@ public class Tile extends TextView implements View.OnClickListener {
             setSelected(false);
             Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; Selected: " + ((Tile) v).isSelected());
             return;
+
         }
 
         if (selectedTiles.size() > 1) {
