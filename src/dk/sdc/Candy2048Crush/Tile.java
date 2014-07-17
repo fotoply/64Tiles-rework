@@ -296,14 +296,20 @@ public class Tile extends TextView implements View.OnClickListener {
                 this.setBackgroundColor(Color.YELLOW + Color.rgb(40, 20, 100));
                 break;
             case 32:
-                this.setBackgroundColor(Color.MAGENTA);
+                this.setBackgroundColor(Color.rgb(240, 130, 70));
                 break;
+            case 64:
+                this.setBackgroundColor(Color.RED);
+                break;
+            case 128:
+                this.setBackgroundColor(Color.rgb(0,0,0));
             default:
                 this.setBackgroundColor(Color.RED);
+                break;
         }
         if(isSelected()) {
             this.setBackgroundColor(Color.YELLOW);
-            this.invalidate();
+            //this.invalidate();
 
             /*Paint p = new Paint();
             p.setStrokeWidth(5f);
@@ -435,5 +441,6 @@ public class Tile extends TextView implements View.OnClickListener {
     public void setValue(int value) {
         this.value = value;
         this.setText("" + value);
+        this.invalidate();
     }
 }
