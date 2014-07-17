@@ -245,8 +245,7 @@ public class Grid extends GridLayout {
      */
     public void deselectAll() {
         for (int i = 0; i < tileList.size(); i++) {
-            Tile temp = tileList.get(i);
-            temp.setSelected(false);
+            tileList.get(i).setSelected(false);
         }
         Toast.makeText(getContext(), "Ready to receive input", Toast.LENGTH_SHORT).show();
     }
@@ -259,6 +258,7 @@ public class Grid extends GridLayout {
      * @param restore if the method restores deselects all and checks for game over after re-swapping the tiles
      */
     public void swapTiles(Tile a, Tile b, boolean restore) {
+        Log.w("Test","SWAPPING");
         if (gameOver) {
             return;
         }
@@ -276,6 +276,8 @@ public class Grid extends GridLayout {
 
             }
         } else {
+            Log.w("TEST", "A1=" + a.isComboAvailableHorisontal() + "; A2=" +a.isComboAvailableVertical() + "; B1=" + b.isComboAvailableHorisontal() + "; B2=" + b.isComboAvailableVertical());
+
             if (!a.isComboAvailableHorisontal() && !a.isComboAvailableVertical() && !b.isComboAvailableHorisontal() && !b.isComboAvailableVertical()) {
                 Toast.makeText(getContext(), "Error: No combos found, reverting", Toast.LENGTH_SHORT).show();
                 swapTiles(a, b, true);
@@ -364,11 +366,12 @@ public class Grid extends GridLayout {
     }
 
     public void printAllTiles() {
+        Log.w("TILE ALL", "Total tiles:" + tileList.size());
         String line = "";
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 try {
-                    line += getTileAt(i,j).getValue() + " ";
+                    line += getTileAt(i,j).getValue() + "-" + this.getTileAt(i,j).getText()+":";
                 } catch (Exception e) {
 
                 }
