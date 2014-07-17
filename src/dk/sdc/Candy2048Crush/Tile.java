@@ -1,4 +1,4 @@
-package dk.sdc.game64Tiles;
+package dk.sdc.Candy2048Crush;
 
 import android.graphics.Canvas;
 import android.graphics.Color;

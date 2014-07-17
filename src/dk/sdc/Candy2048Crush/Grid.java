@@ -1,4 +1,4 @@
-package dk.sdc.game64Tiles;
+package dk.sdc.Candy2048Crush;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -267,9 +267,9 @@ public class Grid extends GridLayout {
      * @param restore if the method restores deselects all and checks for game over after re-swapping the tiles
      */
     public void swapTiles(Tile a, Tile b, boolean restore) {
-        //if (gameOver) { //TODO
-        //    return;
-        //}
+        if (gameOver) {
+            return;
+        }
 
         int tempValue = a.getValue();
         a.setValue(b.getValue());
@@ -366,12 +366,12 @@ public class Grid extends GridLayout {
     public boolean isGameOver() {
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
-                if (!swapCheck(getTileAt(x, y), getTileAt(x + 1, y)) && !swapCheck(getTileAt(x, y), getTileAt(x, y + 1))) {
-                    return true;
+                if (swapCheck(getTileAt(x, y), getTileAt(x + 1, y)) || swapCheck(getTileAt(x, y), getTileAt(x, y + 1))) {
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
 
     public void printAllTiles() {

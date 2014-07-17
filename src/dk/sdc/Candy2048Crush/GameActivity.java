@@ -1,4 +1,4 @@
-package dk.sdc.game64Tiles;
+package dk.sdc.Candy2048Crush;
 
 import android.app.Activity;
 import android.app.AlertDialog;
