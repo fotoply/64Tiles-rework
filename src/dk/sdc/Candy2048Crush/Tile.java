@@ -87,6 +87,11 @@ public class Tile extends TextView implements View.OnClickListener {
         }
     }
 
+    /**
+     * Will detect whether the tile and adjacent tiles are in the correct position for a combo
+     *
+     * @return Returns true if a combo is found, otherwise returns false
+     */
     public boolean isComboAvailableHorisontal() {
         Log.w("COMBO", "looking for horizontal combo at:" + xPos + "," + yPos);
         int tilesFound = 1;
@@ -276,8 +281,10 @@ public class Tile extends TextView implements View.OnClickListener {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
         if(isSelected()) {
             this.setBackgroundColor(Color.DKGRAY);
+            this.invalidate();
 
             /*Paint p = new Paint();
             p.setStrokeWidth(5f);
@@ -287,7 +294,6 @@ public class Tile extends TextView implements View.OnClickListener {
             canvas.drawLine(0, height, width, height, p);
             canvas.drawLine(width, 0, width, height, p);*/
         }
-        super.onDraw(canvas);
 
         switch (value) {
             case 2:

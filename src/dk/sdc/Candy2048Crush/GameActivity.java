@@ -26,6 +26,34 @@ public class GameActivity extends Activity {
         grid.generateGrid(8,8);
 
         Button buNewGame = (Button)findViewById(R.id.buttonNewGame);
+        buNewGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(grid.gameOver) {
+                    grid.tileList.clear();
+                    grid.gameOver = false;
+                    grid.generateGrid(8,8);
+                } else {
+                    new AlertDialog.Builder(GameActivity.this)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setTitle("New game?")
+                            .setMessage("Are you sure you want to start over?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    grid.tileList.clear();
+                                    grid.gameOver = false;
+                                    grid.generateGrid(8,8);
+                                }
+
+                            })
+                            .setNegativeButton("No", null)
+                            .show();
+                }
+            }
+        });
+
         Button buBack = (Button) findViewById(R.id.buttonBack);
 
         buBack.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +62,7 @@ public class GameActivity extends Activity {
                 if(grid.gameOver) {
                     finish();
                 } else {
-                    new AlertDialog.Builder(getApplicationContext())
+                    new AlertDialog.Builder(GameActivity.this)
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .setTitle("Quit?")
                             .setMessage("Are you sure you want to quit?")
@@ -48,7 +76,12 @@ public class GameActivity extends Activity {
                                 }
 
                             })
-                            .setNegativeButton("No", null)
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    grid.printAllTiles();
+                                }
+                            })
                             .show();
                 }
             }
