@@ -1,6 +1,8 @@
 package dk.sdc.Candy2048Crush;
 
 import android.content.Context;
+import android.net.wifi.p2p.WifiP2pManager;
+import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.*;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
 
 /**
  * Created by sdc on 7/15/14.
@@ -58,8 +61,8 @@ public class Grid extends GridLayout {
         respawnAllTiles();
         respawnAllTiles();
         respawnAllTiles();
-        respawnAllTiles();
-        respawnAllTiles();
+
+        autofixTiles();
     }
 
     /**
@@ -300,6 +303,24 @@ public class Grid extends GridLayout {
         for (int i = 0; i < tileList.size(); i++) {
             tileList.get(i).updateTile();
         }
+    }
+
+    public void autofixTiles() {
+        respawnAllTiles();
+        Log.w("TIMER", "Timer starting");
+        new CountDownTimer(20000,1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                autofixTiles();
+                Log.w("TIMER","Fixing");
+            }
+        }.start();
     }
 
     /**

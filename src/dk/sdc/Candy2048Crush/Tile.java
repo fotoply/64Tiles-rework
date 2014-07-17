@@ -119,7 +119,7 @@ public class Tile extends TextView implements View.OnClickListener {
         if (parent.getTileAt(xPos - 1, yPos).value == value) {
             if (parent.getTileAt(xPos - 2, yPos).value == value) {
                 if (parent.getTileAt(xPos + 1, yPos).value == value) {
-                    if (parent.getTileAt(xPos + 2, yPos).value == value) { // FEM ENS!
+                    if (parent.getTileAt(xPos + 2, yPos).value == value) { // Fem ens!
                         parent.removeTileAt(xPos - 1, yPos);
                         parent.removeTileAt(xPos - 2, yPos);
                         parent.removeTileAt(xPos + 1, yPos);
@@ -362,6 +362,7 @@ public class Tile extends TextView implements View.OnClickListener {
             setSelected(true);
         }
         this.invalidate();
+        parent.invalidate();
         Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; V2: " + this.getValue() + "; V3: " + this.getText() + "; Selected: " + ((Tile) v).isSelected());
     }
 
