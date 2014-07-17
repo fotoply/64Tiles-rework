@@ -340,17 +340,14 @@ public class Grid extends GridLayout {
 
 
     /**
-     * respawns all tiles with value
+     * respawns all tiles
      *
-     * @param value of the tiles that respawn
      */
-    public void respawnTilesByValue(int value) {
+    public void respawnAllTiles() {
         Tile temp;
         for (int i = 0; i < tileList.size(); i++) {
-            if (tileList.get(i).getValue() == value) {
-                temp = tileList.get(i);
-                respawnTile(temp.getxPos(), temp.getyPos(), temp.getValue());
-            }
+             temp = tileList.get(i);
+             respawnTile(temp.getxPos(), temp.getyPos(), temp.getValue());
         }
     }
 
