@@ -38,32 +38,11 @@ public class Tile extends TextView implements View.OnClickListener {
         this.setWidth(width);
         this.setHeight(height);
         this.setText(value + "");
-        //this.setBackgroundColor(Color.BLUE);
         this.setGravity(Gravity.CENTER);
     }
 
-    /*@Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        standardTile = new Paint();
-        selectedTile = new Paint();
-        drawWidth = (double) ((canvas.getWidth()-40-8*5)/8);
-        standardTile.setColor(Color.LTGRAY);
-        selectedTile.setColor(Color.BLUE);
-
-        canvas.drawRect(0,0,125,125,standardTile);
-
-        *//*if (isSelected()){
-            canvas.drawRect((float)(20+drawWidth*xPos+5*xPos), (float)(20+drawWidth*yPos+5*yPos), (float)((20+drawWidth*xPos+5*xPos)+drawWidth), (float)((20+drawWidth*yPos+5*yPos)+drawWidth), selectedTile );
-        } else {
-            canvas.drawRect((float)(20+drawWidth*xPos+5*xPos), (float)(20+drawWidth*yPos+5*yPos), (float)((20+drawWidth*xPos+5*xPos)+drawWidth), (float)((20+drawWidth*yPos+5*yPos)+drawWidth), standardTile );
-        }*//*
-
-    }*/
-
     /**
      * Will detect whether the tile and adjacent tiles are in the correct position for a combo
-     *
      * @return Returns true if a combo is found, otherwise returns false
      */
     public boolean isComboAvailableVertical() {
@@ -91,7 +70,6 @@ public class Tile extends TextView implements View.OnClickListener {
 
     /**
      * Will detect whether the tile and adjacent tiles are in the correct position for a combo
-     *
      * @return Returns true if a combo is found, otherwise returns false
      */
     public boolean isComboAvailableHorisontal() {
@@ -120,7 +98,7 @@ public class Tile extends TextView implements View.OnClickListener {
 
 
     /**
-     * Will execute the combo for a tile if any is available.
+     * will find and execute any combos for a tile if any is available. Also updates the view with invalidate
      */
     public void updateTile() {
         this.setText(value + "");
@@ -134,7 +112,7 @@ public class Tile extends TextView implements View.OnClickListener {
     }
 
     /**
-     * Finds and executes combos for the current tile and its surroundings. Will propagate into nwe tiles to avoid non-executed combo leftovers.
+     * Finds and executes combos for the current tile and its surroundings. Will create new tiles for the others, and set the new higher value for itself
      */
     public void executeComboHorizontal() {
         Log.w("COMBO", "executing horizontal combo at:" + xPos + "," + yPos);
@@ -282,6 +260,10 @@ public class Tile extends TextView implements View.OnClickListener {
         Log.w("COMBO", "finished horizontal combo at:" + xPos + "," + yPos);
     }
 
+    /**
+     * Draws the background colors for the tile
+     * @param canvas canvas
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -331,63 +313,8 @@ public class Tile extends TextView implements View.OnClickListener {
         }
         if(isSelected()) {
             this.setBackgroundColor(Color.YELLOW);
-            //this.invalidate();
-
-            /*Paint p = new Paint();
-            p.setStrokeWidth(5f);
-            p.setColor(Color.CYAN);
-            canvas.drawLine(0, 0, width, 0, p);
-            canvas.drawLine(0, 0, 0, height, p);
-            canvas.drawLine(0, height, width, height, p);
-            canvas.drawLine(width, 0, width, height, p);*/
         }
     }
-
-    /*
-        public void executeCombo() {
-        int tilesFound = 1;
-        if (parent.getTileAt(xPos, yPos - 1).value == value) {
-            tilesFound++;
-            parent.generateNewTile(xPos, yPos - 1);
-            if (parent.getTileAt(xPos, yPos - 2).value == value) {
-                tilesFound++;
-                parent.generateNewTile(xPos, yPos - 2);
-            }
-        }
-        if (parent.getTileAt(xPos, yPos + 1).value == value) {
-            tilesFound++;
-            parent.generateNewTile(xPos, yPos + 1);
-            if (parent.getTileAt(xPos, yPos + 2).value == value) {
-                tilesFound++;
-                parent.generateNewTile(xPos, yPos + 2);
-            }
-        }
-        if (tilesFound >= 3) {
-            setValue(value*(int)(Math.pow(2, tilesFound-2)));
-        } else {
-            tilesFound = 1;
-            if (parent.getTileAt(xPos - 1, yPos).value == value) {
-                tilesFound++;
-                parent.generateNewTile(xPos - 1, yPos);
-                if (parent.getTileAt(xPos - 2, yPos).value == value) {
-                    tilesFound++;
-                    parent.generateNewTile(xPos - 2, yPos);
-                }
-            }
-            if (parent.getTileAt(xPos + 1, yPos).value == value) {
-                tilesFound++;
-                parent.generateNewTile(xPos + 1, yPos);
-                if (parent.getTileAt(xPos + 2, yPos).value == value) {
-                    tilesFound++;
-                    parent.generateNewTile(xPos + 2, yPos);
-                }
-            }
-            if (tilesFound >= 3) {
-                setValue(value * (int) (Math.pow(2, tilesFound - 2)));
-            }
-        }
-
-    }*/
 
     public boolean isSelected() {
         return selected;
@@ -400,41 +327,36 @@ public class Tile extends TextView implements View.OnClickListener {
 
     /**
      * Called when a view has been clicked.
-     *
      * @param v The view that was clicked.
      */
     @Override
     public void onClick(View v) {
-        //Log.w("OnClick",((Tile)v).toString());
         ArrayList<Tile> selectedTiles = parent.getSelectedTiles();
 
         if (selectedTiles.size() == 1 && selectedTiles.get(0) == parent.getTileAt(xPos,yPos)) {
             setSelected(false);
-            Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; Selected: " + ((Tile) v).isSelected());
             return;
-
         }
 
         if (selectedTiles.size() > 1) {
             parent.deselectAll();
-            Toast.makeText(getContext(), "Error: too many selected, deselecting all", Toast.LENGTH_SHORT).show();
+            Log.w("selected","Error: too many selected, deselecting all");
         } else if (selectedTiles.size() == 1) {
             if (parent.isAdjacentTile(this, selectedTiles.get(0))) {
                 if (getValue() == selectedTiles.get(0).getValue()) {
-                    Log.w("update", "respawned all tiles with value:" + getValue());
+                    Log.w("selected", "respawned all tiles");
                     parent.respawnAllTiles();
                 } else {
-                    Toast.makeText(getContext(), "Swapping tiles", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getContext(), "Swapping tiles", Toast.LENGTH_SHORT).show();
                     parent.swapTiles(this, selectedTiles.get(0), false);
                 }
             } else {
-                Log.w("TILE SWAP", "X1: " + this.getxPos() + ", Y1:" + this.getyPos() + "; X2: " + selectedTiles.get(0).getxPos() + ", Y2: " + selectedTiles.get(0).getyPos());
+                Log.w("selected", "Not adjacent");
                 Toast.makeText(getContext(), "Not adjacent", Toast.LENGTH_SHORT).show();
                 parent.deselectAll();
             }
         } else {
             setSelected(true);
-            //setBackgroundColor(Color.DKGRAY);
         }
         this.invalidate();
         Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; V2: " + this.getValue() + "; V3: " + this.getText() + "; Selected: " + ((Tile) v).isSelected());
