@@ -288,7 +288,7 @@ public class Tile extends TextView implements View.OnClickListener {
         super.onDraw(canvas);
         switch (value) {
             case 2:
-                this.setBackgroundColor(Color.BLUE);
+                this.setBackgroundColor(Color.rgb(140,140,140));
                 break;
             case 4:
                 this.setBackgroundColor(Color.CYAN + Color.rgb(100, 100, 100));
@@ -306,13 +306,28 @@ public class Tile extends TextView implements View.OnClickListener {
                 this.setBackgroundColor(Color.RED);
                 break;
             case 128:
-                this.setBackgroundColor(Color.rgb(0,0,0));
+                this.setBackgroundColor(Color.rgb(125,15,30));
                 break;
             case 256:
-
+                this.setBackgroundColor(Color.rgb(200,25,150));
+                break;
+            case 512:
+                this.setBackgroundColor(Color.rgb(100,25,170));
+                break;
+            case 1024:
+                this.setBackgroundColor(Color.rgb(0,10,220));
+                break;
+            case 2048:
+                this.setBackgroundColor(Color.rgb(30,250,220));
+                break;
+            case 4096:
+                this.setBackgroundColor(Color.rgb(40,250,30));
+                break;
+            case 8192:
+                this.setBackgroundColor(Color.rgb(30,80,25));
                 break;
             default:
-                this.setBackgroundColor(Color.RED);
+                this.setBackgroundColor(Color.rgb(150,150,20));
                 break;
         }
         if(isSelected()) {
