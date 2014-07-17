@@ -275,8 +275,6 @@ public class Grid extends GridLayout {
         a.setValue(b.getValue());
         b.setValue(tempValue);
 
-        this.invalidate();
-
         if (restore) {
             a.updateTile();
             b.updateTile();
@@ -309,9 +307,8 @@ public class Grid extends GridLayout {
                 b.executeComboVertical();
                 deselectAll();
             }
+            //respawnAllTiles();
         }
-        this.invalidate();
-        respawnAllTiles();
         parent.setSavedHighscore();
     }
 
