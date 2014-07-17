@@ -228,7 +228,6 @@ public class Grid extends GridLayout {
                 return tileList.get(i);
             }
         }
-
         return new Tile(this, -1, -1, -1);
     }
 
@@ -256,7 +255,7 @@ public class Grid extends GridLayout {
             tileList.get(i).setSelected(false);
             tileList.get(i).invalidate();
         }
-        Toast.makeText(getContext(), "Ready to receive input", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "Ready to receive input", Toast.LENGTH_SHORT).show(); //TODO remove toast.
     }
 
     /**
@@ -281,13 +280,12 @@ public class Grid extends GridLayout {
             if (isGameOver()) {
                 Toast.makeText(getContext(), "Game Over, no combos left", Toast.LENGTH_SHORT).show();
                 gameOver = true;
-
             }
         } else {
             Log.w("TEST", "A1=" + a.isComboAvailableHorisontal() + "; A2=" + a.isComboAvailableVertical() + "; B1=" + b.isComboAvailableHorisontal() + "; B2=" + b.isComboAvailableVertical());
 
             if (!a.isComboAvailableHorisontal() && !a.isComboAvailableVertical() && !b.isComboAvailableHorisontal() && !b.isComboAvailableVertical()) {
-                Toast.makeText(getContext(), "Error: No combos found, reverting", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Error: No combos found, reverting", Toast.LENGTH_SHORT).show();
                 swapTiles(a, b, true);
                 deselectAll();
             }
@@ -307,7 +305,7 @@ public class Grid extends GridLayout {
                 b.executeComboVertical();
                 deselectAll();
             }
-            //respawnAllTiles();
+            //respawnAllTiles(); //TODO
         }
         parent.setSavedHighscore();
         parent.setScore(this.getHighscore());
@@ -321,6 +319,7 @@ public class Grid extends GridLayout {
             tileList.get(i).updateTile();
         }
     }
+    //TODO remove updateAllTiles??
 
     /**
      * Checks if swapping two tiles can cause a combo
@@ -329,7 +328,6 @@ public class Grid extends GridLayout {
      * @param b second tile to swap
      * @return if swapping the tiles will cause a combo
      */
-
     public boolean swapCheck(Tile a, Tile b) {
         int tempValue = a.getValue();
         a.setValue(b.getValue());
@@ -352,7 +350,7 @@ public class Grid extends GridLayout {
 
 
     /**
-     * respawns all tiles
+     * Respawns all tiles
      */
     public void respawnAllTiles() {
         Tile temp;
@@ -363,6 +361,11 @@ public class Grid extends GridLayout {
         }
     }
 
+    /**
+     * Checks if there is any combo you can do with remaining tiles.
+     *
+     * @return true if there is any possible move that can cause a combo.
+     */
     public boolean isGameOver() {
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
@@ -374,6 +377,9 @@ public class Grid extends GridLayout {
         return true;
     }
 
+    /**
+     * Prints all tiles to Log.w
+     */
     public void printAllTiles() {
         Log.w("TILE ALL", "Total tiles:" + tileList.size());
         String line = "";
@@ -388,6 +394,7 @@ public class Grid extends GridLayout {
             Log.w("TILE ALL", line);
             line = "";
             //Log.w("TILE", tileList.get(i).getValue() + ", ");
+            //TODO er printAllTiles kun for debug?
         }
     }
 }
