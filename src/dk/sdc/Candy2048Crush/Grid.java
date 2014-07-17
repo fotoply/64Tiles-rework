@@ -133,12 +133,26 @@ public class Grid extends GridLayout {
     }
 
     /**
-     * respawns a tile from scratch from coordinates and a value
+     * Runs through all tiles and finds the highest value.
+     * @return The value of the highest tile
+     */
+    public int getHighscore(){
+        int highscore = 0;
+        for (int i = 0; i < tileList.size(); i++) {
+            if (tileList.get(i).getValue() > highscore) {
+                highscore = tileList.get(i).getValue();
+            }
+        }
+        return highscore;
+    }
+
+    /**
+     * Respawns a tile from scratch from coordinates and a value.
      *
-     * @param x     coordinate of the tile
-     * @param y     coordinate of the tile
-     * @param value of the tile
-     * @return the new tile
+     * @param x     coordinate of the tile.
+     * @param y     coordinate of the tile.
+     * @param value of the tile.
+     * @return the new tile.
      */
     public Tile respawnTile(int x, int y, int value) {
         if (getTileAt(x, y).getValue() != -1) {
@@ -245,7 +259,7 @@ public class Grid extends GridLayout {
      * @param restore if the method restores deselects all and checks for game over after re-swapping the tiles
      */
     public void swapTiles(Tile a, Tile b, boolean restore) {
-        if (gameOver == true) {
+        if (gameOver) {
             return;
         }
 
