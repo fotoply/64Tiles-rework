@@ -4,7 +4,9 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,17 +24,24 @@ public class GameActivity extends Activity {
 
         getActionBar().hide();
 
-        final Grid grid = (Grid)findViewById(R.id.cvGameGrid);
-        grid.generateGrid(8,8);
+        /*
+        TODO place SharedPreferences the right place?
+        SharedPreferences highScore = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editHighscore = highScore.edit();
+        */
 
-        Button buNewGame = (Button)findViewById(R.id.buttonNewGame);
+
+        final Grid grid = (Grid) findViewById(R.id.cvGameGrid);
+        grid.generateGrid(8, 8);
+
+        Button buNewGame = (Button) findViewById(R.id.buttonNewGame);
         buNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(grid.gameOver) {
+                if (grid.gameOver) {
                     grid.tileList.clear();
                     grid.gameOver = false;
-                    grid.generateGrid(8,8);
+                    grid.generateGrid(8, 8);
                 } else {
                     new AlertDialog.Builder(GameActivity.this)
                             .setIcon(android.R.drawable.ic_dialog_alert)
@@ -44,7 +53,7 @@ public class GameActivity extends Activity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     grid.tileList.clear();
                                     grid.gameOver = false;
-                                    grid.generateGrid(8,8);
+                                    grid.generateGrid(8, 8);
                                 }
 
                             })
@@ -59,7 +68,7 @@ public class GameActivity extends Activity {
         buBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(grid.gameOver) {
+                if (grid.gameOver) {
                     finish();
                 } else {
                     new AlertDialog.Builder(GameActivity.this)
@@ -86,5 +95,6 @@ public class GameActivity extends Activity {
                 }
             }
         });
+
     }
 }

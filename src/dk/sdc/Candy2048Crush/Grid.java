@@ -258,10 +258,9 @@ public class Grid extends GridLayout {
      * @param restore if the method restores deselects all and checks for game over after re-swapping the tiles
      */
     public void swapTiles(Tile a, Tile b, boolean restore) {
-        Log.w("Test","SWAPPING");
-        if (gameOver) {
-            return;
-        }
+        //if (gameOver) { //TODO
+        //    return;
+        //}
 
         int tempValue = a.getValue();
         a.setValue(b.getValue());
@@ -272,6 +271,7 @@ public class Grid extends GridLayout {
             b.updateTile();
             if (isGameOver()) {
                 Toast.makeText(getContext(), "Game Over, no combos left", Toast.LENGTH_SHORT).show();
+                //parent.updateHighscore();  //TODO
                 gameOver = true;
 
             }
