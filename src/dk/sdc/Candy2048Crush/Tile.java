@@ -119,7 +119,7 @@ public class Tile extends TextView implements View.OnClickListener {
         if (parent.getTileAt(xPos - 1, yPos).value == value) {
             if (parent.getTileAt(xPos - 2, yPos).value == value) {
                 if (parent.getTileAt(xPos + 1, yPos).value == value) {
-                    if (parent.getTileAt(xPos + 2, yPos).value == value) { // Fem ens!
+                    if (parent.getTileAt(xPos + 2, yPos).value == value) { // FEM ENS!
                         parent.removeTileAt(xPos - 1, yPos);
                         parent.removeTileAt(xPos - 2, yPos);
                         parent.removeTileAt(xPos + 1, yPos);
