@@ -53,7 +53,13 @@ public class Grid extends GridLayout {
                 Log.w("TILE", "INVALID TILE FOUND; REGENERATING");
                 generateNewTile(tileList.get(i).getxPos(), tileList.get(i).getyPos());
             }
+            tileList.get(i).invalidate();
         }
+        respawnAllTiles();
+        respawnAllTiles();
+        respawnAllTiles();
+        respawnAllTiles();
+        respawnAllTiles();
     }
 
     /**
@@ -117,6 +123,7 @@ public class Grid extends GridLayout {
         } catch (Exception e) {
 
         }
+        tileList.get(cuTile).invalidate();
         return tileList.get(cuTile);
 
         /*Spec row = GridLayout.spec(y, 1);
@@ -181,6 +188,7 @@ public class Grid extends GridLayout {
         } catch (Exception e) {
 
         }
+        tileList.get(cuTile).invalidate();
         return tileList.get(cuTile);
     }
 
@@ -247,6 +255,7 @@ public class Grid extends GridLayout {
     public void deselectAll() {
         for (int i = 0; i < tileList.size(); i++) {
             tileList.get(i).setSelected(false);
+            tileList.get(i).invalidate();
         }
         Toast.makeText(getContext(), "Ready to receive input", Toast.LENGTH_SHORT).show();
     }
@@ -266,6 +275,8 @@ public class Grid extends GridLayout {
         int tempValue = a.getValue();
         a.setValue(b.getValue());
         b.setValue(tempValue);
+
+        this.invalidate();
 
         if (restore) {
             a.updateTile();
@@ -300,6 +311,7 @@ public class Grid extends GridLayout {
                 deselectAll();
             }
         }
+        this.invalidate();
         parent.setSavedHighscore();
     }
 
@@ -324,6 +336,7 @@ public class Grid extends GridLayout {
         int tempValue = a.getValue();
         a.setValue(b.getValue());
         b.setValue(tempValue);
+        this.invalidate();
 
         if (!a.isComboAvailableHorisontal() && !a.isComboAvailableVertical() && !b.isComboAvailableHorisontal() && !b.isComboAvailableVertical()) {
             tempValue = a.getValue();
@@ -348,6 +361,7 @@ public class Grid extends GridLayout {
         Tile temp;
         for (int i = 0; i < tileList.size(); i++) {
              temp = tileList.get(i);
+             tileList.get(i).invalidate();
              respawnTile(temp.getxPos(), temp.getyPos(), temp.getValue());
         }
     }

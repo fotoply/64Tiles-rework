@@ -33,6 +33,9 @@ public class Tile extends TextView implements View.OnClickListener {
         setValue(value);
         setOnClickListener(this);
 
+        width = (parent.getWidth()-70)/8;
+        height = width;
+
         this.setWidth(width);
         this.setHeight(height);
         this.setText(value + "");
@@ -304,6 +307,10 @@ public class Tile extends TextView implements View.OnClickListener {
                 break;
             case 128:
                 this.setBackgroundColor(Color.rgb(0,0,0));
+                break;
+            case 256:
+
+                break;
             default:
                 this.setBackgroundColor(Color.RED);
                 break;
