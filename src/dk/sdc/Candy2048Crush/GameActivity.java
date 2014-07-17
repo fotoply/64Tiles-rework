@@ -23,10 +23,9 @@ public class GameActivity extends Activity {
         setContentView(R.layout.game);
 
         getActionBar().hide();
-        //TODO place SharedPreferences the right place?
+
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sp.edit();
-
 
         grid = (Grid) findViewById(R.id.cvGameGrid);
         grid.parent = this;
