@@ -409,7 +409,7 @@ public class Tile extends TextView implements View.OnClickListener {
             setSelected(true);
             setBackgroundColor(Color.DKGRAY);
         }
-        invalidate();
+        this.invalidate();
         Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; Selected: " + ((Tile) v).isSelected());
     }
 
