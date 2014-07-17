@@ -186,6 +186,9 @@ public class Tile extends TextView implements View.OnClickListener {
         Log.w("COMBO", "finished horizontal combo at:" + xPos + "," + yPos);
     }
 
+    /**
+     *  Finds and executes combos for the current tile and its surroundings. Will create new tiles for the others, and set the new higher value for itself
+     */
     public void executeComboVertical() {
         Log.w("COMBO", "executing vertical combo at:" + xPos + "," + yPos);
         if (parent.getTileAt(xPos, yPos - 1).value == value) {
