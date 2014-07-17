@@ -30,6 +30,8 @@ public class Grid extends GridLayout{
         super(context, attrs, defStyle);
     }
 
+    boolean gameOver = false;
+
     /**
      * Generates a grid of tiles, with width*height amount of tiles.
      * @param width
@@ -237,6 +239,10 @@ public class Grid extends GridLayout{
      * @param restore if the method restores deselects all and checks for game over after re-swapping the tiles
      */
     public void swapTiles(Tile a, Tile b, boolean restore){
+        if(gameOver == true) {
+            return;
+        }
+
         int tempValue = a.getValue();
         a.setValue(b.getValue());
         b.setValue(tempValue);
@@ -244,7 +250,11 @@ public class Grid extends GridLayout{
         if (restore) {
             a.updateTile();
             b.updateTile();
-            //TODO: isGameOver
+            if (isGameOver()) {
+                Toast.makeText(getContext(), "Game Over, no combos left", Toast.LENGTH_SHORT).show();
+                gameOver = true;
+
+            }
         } else {
             if (!a.isComboAvailableHorisontal() && !a.isComboAvailableVertical() && !b.isComboAvailableHorisontal() && !b.isComboAvailableVertical()) {
                 Toast.makeText(getContext(), "Error: No combos found, reverting", Toast.LENGTH_SHORT).show();
@@ -280,6 +290,33 @@ public class Grid extends GridLayout{
     }
 
     /**
+     * Checks if swapping two tiles can cause a combo
+     * @param a first tile to swap
+     * @param b second tile to swap
+     * @return if swapping the tiles will cause a combo
+     */
+
+    public boolean swapCheck (Tile a, Tile b) {
+        int tempValue = a.getValue();
+        a.setValue(b.getValue());
+        b.setValue(tempValue);
+
+        if (!a.isComboAvailableHorisontal() && !a.isComboAvailableVertical() && !b.isComboAvailableHorisontal() && !b.isComboAvailableVertical()) {
+            tempValue = a.getValue();
+            a.setValue(b.getValue());
+            b.setValue(tempValue);
+            return false;
+        } else {
+            Log.w("swap", "swapCheck on " + a.getxPos() + "," + a.getyPos() + "and" + b.getxPos() + "," + b.getyPos() + "succesFull");
+            tempValue = a.getValue();
+            a.setValue(b.getValue());
+            b.setValue(tempValue);
+            return true;
+        }
+    }
+
+
+    /**
      * respawns all tiles with value
      * @param value of the tiles that respawn
      */
@@ -291,5 +328,16 @@ public class Grid extends GridLayout{
                 respawnTile(temp.getxPos(),temp.getyPos(), temp.getValue());
             }
         }
+    }
+
+    public boolean isGameOver(){
+        for (int x = 0; x < 7; x++) {
+            for (int y = 0; y < 7; y++) {
+                if (swapCheck(getTileAt(x,y),getTileAt(x+1,y)) || swapCheck(getTileAt(x,y),getTileAt(x,y+1))) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
