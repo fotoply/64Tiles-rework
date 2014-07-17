@@ -35,7 +35,11 @@ public class GameActivity extends Activity {
 
         grid = (Grid) findViewById(R.id.cvGameGrid);
         grid.parent = this;
+        grid.gameOver = false;
+        grid.tileList.clear();
         grid.generateGrid(8, 8);
+
+        getSavedHighscore();
 
         Button buNewGame = (Button) findViewById(R.id.buttonNewGame);
         buNewGame.setOnClickListener(new View.OnClickListener() {

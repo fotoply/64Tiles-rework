@@ -142,14 +142,13 @@ public class Grid extends GridLayout {
 
     /**
      * Runs through all tiles and finds the highest value.
+     *
      * @return The value of the highest tile
      */
-    public int getHighscore(){
+    public int getHighscore() {
         int highscore = 0;
         for (int i = 0; i < tileList.size(); i++) {
-            if (tileList.get(i).getValue() > highscore) {
-                highscore = tileList.get(i).getValue();
-            }
+            highscore += tileList.get(i).getValue();
         }
         return highscore;
     }
@@ -287,7 +286,7 @@ public class Grid extends GridLayout {
 
             }
         } else {
-            Log.w("TEST", "A1=" + a.isComboAvailableHorisontal() + "; A2=" +a.isComboAvailableVertical() + "; B1=" + b.isComboAvailableHorisontal() + "; B2=" + b.isComboAvailableVertical());
+            Log.w("TEST", "A1=" + a.isComboAvailableHorisontal() + "; A2=" + a.isComboAvailableVertical() + "; B1=" + b.isComboAvailableHorisontal() + "; B2=" + b.isComboAvailableVertical());
 
             if (!a.isComboAvailableHorisontal() && !a.isComboAvailableVertical() && !b.isComboAvailableHorisontal() && !b.isComboAvailableVertical()) {
                 Toast.makeText(getContext(), "Error: No combos found, reverting", Toast.LENGTH_SHORT).show();
@@ -355,14 +354,13 @@ public class Grid extends GridLayout {
 
     /**
      * respawns all tiles
-     *
      */
     public void respawnAllTiles() {
         Tile temp;
         for (int i = 0; i < tileList.size(); i++) {
-             temp = tileList.get(i);
-             tileList.get(i).invalidate();
-             respawnTile(temp.getxPos(), temp.getyPos(), temp.getValue());
+            temp = tileList.get(i);
+            tileList.get(i).invalidate();
+            respawnTile(temp.getxPos(), temp.getyPos(), temp.getValue());
         }
     }
 
@@ -383,7 +381,7 @@ public class Grid extends GridLayout {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 try {
-                    line += getTileAt(i,j).getValue() + "-" + this.getTileAt(i,j).getText()+":";
+                    line += getTileAt(i, j).getValue() + "-" + this.getTileAt(i, j).getText() + ":";
                 } catch (Exception e) {
 
                 }
