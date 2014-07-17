@@ -128,6 +128,7 @@ public class Tile extends TextView implements View.OnClickListener {
         if (isComboAvailableVertical()) {
             executeComboVertical();
         }
+        this.invalidate();
     }
 
     /**
@@ -319,7 +320,6 @@ public class Tile extends TextView implements View.OnClickListener {
             canvas.drawLine(0, height, width, height, p);
             canvas.drawLine(width, 0, width, height, p);*/
         }
-
     }
 
     /*
@@ -374,6 +374,7 @@ public class Tile extends TextView implements View.OnClickListener {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+        this.invalidate();
     }
 
     /**
