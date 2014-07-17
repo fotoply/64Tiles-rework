@@ -61,8 +61,6 @@ public class Grid extends GridLayout {
         respawnAllTiles();
         respawnAllTiles();
         respawnAllTiles();
-
-        autofixTiles();
     }
 
     /**
@@ -308,19 +306,19 @@ public class Grid extends GridLayout {
     public void autofixTiles() {
         respawnAllTiles();
         Log.w("TIMER", "Timer starting");
-        new CountDownTimer(20000,1000) {
+            new CountDownTimer(20000, 1000) {
 
-            @Override
-            public void onTick(long millisUntilFinished) {
+                @Override
+                public void onTick(long millisUntilFinished) {
 
-            }
+                }
 
-            @Override
-            public void onFinish() {
-                autofixTiles();
-                Log.w("TIMER","Fixing");
-            }
-        }.start();
+                @Override
+                public void onFinish() {
+                    autofixTiles();
+                    Log.w("TIMER", "Fixing");
+                }
+            }.start();
     }
 
     /**

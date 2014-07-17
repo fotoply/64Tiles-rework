@@ -44,6 +44,7 @@ public class GameActivity extends Activity {
                     grid.tileList.clear();
                     grid.gameOver = false;
                     grid.generateGrid(8, 8);
+                    grid.autofixTiles();
                 } else {
                     new AlertDialog.Builder(GameActivity.this)
                             .setIcon(android.R.drawable.ic_dialog_alert)
@@ -56,6 +57,7 @@ public class GameActivity extends Activity {
                                     grid.tileList.clear();
                                     grid.gameOver = false;
                                     grid.generateGrid(8, 8);
+                                    grid.autofixTiles();
                                 }
 
                             })
