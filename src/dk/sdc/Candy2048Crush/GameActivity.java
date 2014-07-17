@@ -7,9 +7,11 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.lang.reflect.Field;
 
@@ -17,21 +19,21 @@ import java.lang.reflect.Field;
  * Created by sdc on 7/15/14.
  */
 public class GameActivity extends Activity {
+    Grid grid;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
         getActionBar().hide();
-
-        /*
-        TODO place SharedPreferences the right place?
-        SharedPreferences highScore = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editHighscore = highScore.edit();
-        */
+        //TODO place SharedPreferences the right place?
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sp.edit();
 
 
-        final Grid grid = (Grid) findViewById(R.id.cvGameGrid);
+        grid = (Grid) findViewById(R.id.cvGameGrid);
         grid.generateGrid(8, 8);
 
         Button buNewGame = (Button) findViewById(R.id.buttonNewGame);
@@ -96,5 +98,19 @@ public class GameActivity extends Activity {
             }
         });
 
+    }
+
+    public void setSavedHighscore() {
+        if(sp.getInt("highscore",0) < grid.getHighscore()) {
+            editor.putInt("highscore",grid.getHighscore());
+        }
+        TextView tv = (TextView)findViewById(R.id.textViewHighScore);
+        tv.setText("Highscore: " + sp.getInt("highscore",0));
+    }
+
+    public int getSavedHighscore() {
+        TextView tv = (TextView)findViewById(R.id.textViewHighScore);
+        tv.setText("Highscore: " + sp.getInt("highscore",0));
+        return  sp.getInt(("hihgscore"),0);
     }
 }
