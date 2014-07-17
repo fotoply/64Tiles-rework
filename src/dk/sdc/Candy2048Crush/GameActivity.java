@@ -34,6 +34,7 @@ public class GameActivity extends Activity {
 
 
         grid = (Grid) findViewById(R.id.cvGameGrid);
+        grid.parent = this;
         grid.generateGrid(8, 8);
 
         Button buNewGame = (Button) findViewById(R.id.buttonNewGame);
@@ -106,6 +107,7 @@ public class GameActivity extends Activity {
         }
         TextView tv = (TextView)findViewById(R.id.textViewHighScore);
         tv.setText("Highscore: " + sp.getInt("highscore",0));
+        editor.commit();
     }
 
     public int getSavedHighscore() {

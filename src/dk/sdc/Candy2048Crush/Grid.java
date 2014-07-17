@@ -31,6 +31,7 @@ public class Grid extends GridLayout {
     }
 
     boolean gameOver = false;
+    public GameActivity parent;
 
     /**
      * Generates a grid of tiles, with width*height amount of tiles.
@@ -271,7 +272,6 @@ public class Grid extends GridLayout {
             b.updateTile();
             if (isGameOver()) {
                 Toast.makeText(getContext(), "Game Over, no combos left", Toast.LENGTH_SHORT).show();
-                //parent.updateHighscore();  //TODO
                 gameOver = true;
 
             }
@@ -300,6 +300,7 @@ public class Grid extends GridLayout {
                 deselectAll();
             }
         }
+        parent.setSavedHighscore();
     }
 
     /**
