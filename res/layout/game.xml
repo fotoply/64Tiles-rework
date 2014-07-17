@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:text="Highscore"
                 android:id="@+id/textViewHighScore" android:layout_gravity="center_horizontal|bottom" android:layout_weight="1"
-                android:textAlignment="center" android:textIsSelectable="false"/>
+                android:textAlignment="center" android:textIsSelectable="false" android:gravity="center"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
