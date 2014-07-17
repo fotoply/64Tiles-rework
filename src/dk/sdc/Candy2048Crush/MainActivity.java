@@ -17,11 +17,11 @@ public class MainActivity extends Activity {
 
         getActionBar().hide();
 
-        Button buStartGame = (Button)findViewById(R.id.buGameStart);
+        Button buStartGame = (Button) findViewById(R.id.buGameStart);
         buStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),GameActivity.class);
+                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
                 startActivity(intent);
             }
         });

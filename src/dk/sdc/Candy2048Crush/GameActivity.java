@@ -17,6 +17,7 @@ public class GameActivity extends Activity {
     Grid grid;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,23 +100,36 @@ public class GameActivity extends Activity {
 
     }
 
+    /**
+     * Sets the saved high score.
+     */
     public void setSavedHighscore() {
-        if(sp.getInt("highscore",0) < grid.getHighscore()) {
-            editor.putInt("highscore",grid.getHighscore());
+        if (sp.getInt("highscore", 0) < grid.getHighscore()) {
+            editor.putInt("highscore", grid.getHighscore());
         }
-        TextView tv = (TextView)findViewById(R.id.textViewHighScore);
-        tv.setText("Highscore: " + sp.getInt("highscore",0));
+        TextView tv = (TextView) findViewById(R.id.textViewHighScore);
+        tv.setText("Highscore: " + sp.getInt("highscore", 0));
         editor.commit();
     }
 
+    /**
+     * Sets the score to score
+     *
+     * @param score The score you want to set.
+     */
     public void setScore(int score) {
-        TextView tv = (TextView)findViewById(R.id.textViewScore);
+        TextView tv = (TextView) findViewById(R.id.textViewScore);
         tv.setText("Score: " + score);
     }
 
+    /**
+     * Gets the high score form shared preferences.
+     *
+     * @return The high score that was saved in shared preferences.
+     */
     public int getSavedHighscore() {
-        TextView tv = (TextView)findViewById(R.id.textViewHighScore);
-        tv.setText("Highscore: " + sp.getInt("highscore",0));
-        return  sp.getInt(("hihgscore"),0);
+        TextView tv = (TextView) findViewById(R.id.textViewHighScore);
+        tv.setText("Highscore: " + sp.getInt("highscore", 0));
+        return sp.getInt(("hihgscore"), 0);
     }
 }
