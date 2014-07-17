@@ -39,7 +39,7 @@ public class Tile extends TextView implements View.OnClickListener {
         this.setWidth(width);
         this.setHeight(height);
         this.setText(value + "");
-        this.setBackgroundColor(Color.BLUE);
+        //this.setBackgroundColor(Color.BLUE);
         this.setGravity(Gravity.CENTER);
     }
 
@@ -435,7 +435,7 @@ public class Tile extends TextView implements View.OnClickListener {
             }
         } else {
             setSelected(true);
-            setBackgroundColor(Color.DKGRAY);
+            //setBackgroundColor(Color.DKGRAY);
         }
         this.invalidate();
         Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; V2: " + this.getValue() + "; V3: " + this.getText() + "; Selected: " + ((Tile) v).isSelected());

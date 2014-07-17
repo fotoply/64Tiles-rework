@@ -311,6 +311,7 @@ public class Grid extends GridLayout {
             }
         }
         this.invalidate();
+        respawnAllTiles();
         parent.setSavedHighscore();
     }
 
@@ -367,7 +368,7 @@ public class Grid extends GridLayout {
     public boolean isGameOver() {
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
-                if (swapCheck(getTileAt(x, y), getTileAt(x + 1, y)) || swapCheck(getTileAt(x, y), getTileAt(x, y + 1))) {
+                if (!swapCheck(getTileAt(x, y), getTileAt(x + 1, y)) && !swapCheck(getTileAt(x, y), getTileAt(x, y + 1))) {
                     return true;
                 }
             }
