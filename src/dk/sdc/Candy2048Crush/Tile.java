@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -109,6 +110,8 @@ public class Tile extends TextView implements View.OnClickListener {
             executeComboVertical();
         }
         this.invalidate();
+        this.postInvalidate();
+        parent.postInvalidate();
     }
 
     /**
@@ -183,6 +186,8 @@ public class Tile extends TextView implements View.OnClickListener {
                 updateTile();
             }
         }
+        this.postInvalidate();
+        parent.postInvalidate();
         Log.w("COMBO", "finished horizontal combo at:" + xPos + "," + yPos);
     }
 
@@ -260,6 +265,8 @@ public class Tile extends TextView implements View.OnClickListener {
                 updateTile();
             }
         }
+        this.postInvalidate();
+        parent.postInvalidate();
         Log.w("COMBO", "finished horizontal combo at:" + xPos + "," + yPos);
     }
 
@@ -363,6 +370,8 @@ public class Tile extends TextView implements View.OnClickListener {
         }
         this.invalidate();
         parent.invalidate();
+        this.postInvalidate();
+        parent.postInvalidate();
         Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; V2: " + this.getValue() + "; V3: " + this.getText() + "; Selected: " + ((Tile) v).isSelected());
     }
 

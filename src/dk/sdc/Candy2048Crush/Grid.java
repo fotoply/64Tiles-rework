@@ -57,6 +57,7 @@ public class Grid extends GridLayout {
                 generateNewTile(tileList.get(i).getxPos(), tileList.get(i).getyPos());
             }
             tileList.get(i).invalidate();
+            tileList.get(i).postInvalidate();
         }
         respawnAllTiles();
         respawnAllTiles();
@@ -122,6 +123,7 @@ public class Grid extends GridLayout {
 
         }
         tileList.get(cuTile).invalidate();
+        tileList.get(cuTile).postInvalidate();
         return tileList.get(cuTile);
     }
 
