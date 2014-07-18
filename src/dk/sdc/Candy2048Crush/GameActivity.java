@@ -14,9 +14,9 @@ import android.widget.TextView;
  * Created at UNF SDC on 7/15/14. Full sourcecode is aviable on github at https://github.com/sdc2014/Candy2048Crush
  */
 public class GameActivity extends Activity {
-    Grid grid;
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
+    private Grid grid;
+    private SharedPreferences sp;
+    private SharedPreferences.Editor editor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

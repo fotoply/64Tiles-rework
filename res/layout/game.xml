@@ -6,7 +6,7 @@
               android:layout_height="match_parent">
 
     <view android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          android:layout_height="0dp"
           class="dk.sdc.Candy2048Crush.Grid" android:id="@+id/cvGameGrid" android:layout_gravity="center"
           android:layout_weight="1" android:clickable="false"
             android:verticalSpacing="10dp"

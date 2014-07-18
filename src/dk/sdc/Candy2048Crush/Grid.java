@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class Grid extends GridLayout {
     ArrayList<Tile> tileList = new ArrayList<Tile>();
-    int[] tileValues = {2, 4, 8, 16};
+    private final int[] tileValues = {2, 4, 8, 16};
 
     public Grid(Context context) {
         this(context, null);
