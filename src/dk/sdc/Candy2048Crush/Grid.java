@@ -256,9 +256,9 @@ public class Grid extends GridLayout {
      * @param restore if the method restores deselects all and checks for game over after re-swapping the tiles
      */
     public void swapTiles(Tile a, Tile b, boolean restore) {
-        if (gameOver) {
+        /*if (gameOver) {
             return;
-        }
+        }*/
 
         int tempValue = a.getValue();
         a.setValue(b.getValue());
