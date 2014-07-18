@@ -140,30 +140,20 @@ public class Grid extends GridLayout {
         if (getTileAt(x, y).getValue() != -1) {
             removeTileAt(x, y);
         }
-        tileList.add(new Tile(this, x, y, value));
+        Tile t = new Tile(this, x, y, value)
+        tileList.add(t);
         Log.w("Regenerate tile", "Regenerated tile at: " + x + "," + y);
         int cuTile = tileList.size() - 1;
         Spec row = GridLayout.spec(y, 1);
         Spec colspan = GridLayout.spec(x, 1);
         GridLayout.LayoutParams gridLayoutParam = new GridLayout.LayoutParams(row, colspan);
         gridLayoutParam.setMargins(5, 5, 5, 5);
-        tileList.get(cuTile).layout(0, 0, 125, 125);
-        //Log.w("Creation", tempTile.getParent().toString());
-        try {
-            addView(tileList.get(cuTile), gridLayoutParam);
-            final Tile tempT = tileList.get(cuTile);
-            tileList.get(cuTile).setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    tempT.onClick(v);
-                }
-            });
-            //Log.w("Creation", tempTile.getParent().toString());
-        } catch (Exception e) {
-
-        }
-        tileList.get(cuTile).invalidate();
-        tileList.get(cuTile).postInvalidate();
+        //tileList.get(cuTile).layout(0, 0, 125, 125);
+//        try {
+        addView(t, gridLayoutParam);
+//        } catch (Exception ignored) {
+//
+//        }
         return tileList.get(cuTile);
     }
 
