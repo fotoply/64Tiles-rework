@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * Created at UNF SDC on 7/15/14. Full sourcecode is aviable on github at https://github.com/sdc2014/Candy2048Crush
+ * Created at UNF SDC on 7/15/14. Full sourcecode is available on github at https://github.com/sdc2014/Candy2048Crush
  */
 public class GameActivity extends Activity {
     Grid grid;
@@ -131,6 +131,6 @@ public class GameActivity extends Activity {
     public int getSavedHighscore() {
         TextView tv = (TextView) findViewById(R.id.textViewHighScore);
         tv.setText("Highscore: " + sp.getInt("highscore", 0));
-        return sp.getInt(("hihgscore"), 0);
+        return sp.getInt(("highscore"), 0);
     }
 }

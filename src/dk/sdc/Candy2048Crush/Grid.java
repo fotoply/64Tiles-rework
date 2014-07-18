@@ -13,7 +13,7 @@ import java.util.Random;
 import java.util.Timer;
 
 /**
- * Created at UNF SDC on 7/15/14. Full sourcecode is aviable on github at https://github.com/sdc2014/Candy2048Crush
+ * Created at UNF SDC on 7/15/14. Full sourcecode is available on github at https://github.com/sdc2014/Candy2048Crush
  */
 
 public class Grid extends GridLayout {
