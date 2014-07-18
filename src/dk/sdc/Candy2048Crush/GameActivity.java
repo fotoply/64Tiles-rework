@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * Created by sdc on 7/15/14.
+ * Created at UNF SDC on 7/15/14. Full sourcecode is aviable on github at https://github.com/sdc2014/Candy2048Crush
  */
 public class GameActivity extends Activity {
     Grid grid;

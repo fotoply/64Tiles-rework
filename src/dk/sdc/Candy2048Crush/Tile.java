@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 /**
- * Created by sdc on 7/15/14.
+ * Created at UNF SDC on 7/15/14. Full sourcecode is aviable on github at https://github.com/sdc2014/Candy2048Crush
  */
 
 public class Tile extends TextView implements View.OnClickListener {

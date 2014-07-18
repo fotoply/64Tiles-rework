@@ -13,9 +13,8 @@ import java.util.Random;
 import java.util.Timer;
 
 /**
- * Created by sdc on 7/15/14.
+ * Created at UNF SDC on 7/15/14. Full sourcecode is aviable on github at https://github.com/sdc2014/Candy2048Crush
  */
-
 
 public class Grid extends GridLayout {
     ArrayList<Tile> tileList = new ArrayList<Tile>();
