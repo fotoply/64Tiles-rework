@@ -37,6 +37,7 @@ public class Tile extends TextView implements View.OnClickListener {
         this.setHeight(height);
         this.setText(value + "");
         this.setGravity(Gravity.CENTER);
+        setOnClickListener(this);
     }
 
     /**
@@ -367,8 +368,6 @@ public class Tile extends TextView implements View.OnClickListener {
         }
         this.invalidate();
         parent.invalidate();
-        this.postInvalidate();
-        parent.postInvalidate();
         Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; V2: " + this.getValue() + "; V3: " + this.getText() + "; Selected: " + ((Tile)v).isSelected());
     }
 
