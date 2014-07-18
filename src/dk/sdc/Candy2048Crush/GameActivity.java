@@ -33,7 +33,7 @@ public class GameActivity extends Activity {
         grid.gameOver = false;
         grid.tileList.clear();
         grid.generateGrid(8, 8);
-        grid.autofixTiles();
+        //grid.autofixTiles();
 
         getSavedHighscore();
 

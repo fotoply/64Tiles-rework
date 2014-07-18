@@ -53,12 +53,10 @@ public class Grid extends GridLayout {
                 Log.w("TILE", "INVALID TILE FOUND; REGENERATING");
                 generateNewTile(tileList.get(i).getxPos(), tileList.get(i).getyPos());
             }
-            tileList.get(i).invalidate();
-            tileList.get(i).postInvalidate();
         }
+        /*respawnAllTiles();
         respawnAllTiles();
-        respawnAllTiles();
-        respawnAllTiles();
+        respawnAllTiles();*/
     }
 
     /**
@@ -140,7 +138,7 @@ public class Grid extends GridLayout {
         if (getTileAt(x, y).getValue() != -1) {
             removeTileAt(x, y);
         }
-        Tile t = new Tile(this, x, y, value)
+        Tile t = new Tile(this, x, y, value);
         tileList.add(t);
         Log.w("Regenerate tile", "Regenerated tile at: " + x + "," + y);
         int cuTile = tileList.size() - 1;
