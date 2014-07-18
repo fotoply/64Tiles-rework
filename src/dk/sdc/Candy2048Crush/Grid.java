@@ -1,7 +1,6 @@
 package dk.sdc.Candy2048Crush;
 
 import android.content.Context;
-import android.net.wifi.p2p.WifiP2pManager;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.widget.*;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Timer;
 
 /**
  * Created at UNF SDC on 7/15/14. Full sourcecode is aviable on github at https://github.com/sdc2014/Candy2048Crush
@@ -174,6 +172,7 @@ public class Grid extends GridLayout {
 
         }
         tileList.get(cuTile).invalidate();
+        tileList.get(cuTile).postInvalidate();
         return tileList.get(cuTile);
     }
 
@@ -198,7 +197,13 @@ public class Grid extends GridLayout {
      * @param y
      */
     public void removeTileAt(int x, int y) {
-        tileList.remove(getTileAt(x, y));
+        for(int i = 0; i < tileList.size(); i++) {
+            if(tileList.get(i).getxPos() == x && tileList.get(i).getyPos() == y) {
+                tileList.set(i,null);
+                tileList.remove(i);
+            }
+        }
+        //System.gc();
     }
 
     /**
@@ -307,19 +312,19 @@ public class Grid extends GridLayout {
     public void autofixTiles() {
         respawnAllTiles();
         Log.w("TIMER", "Timer starting");
-            new CountDownTimer(20000, 1000) {
+        new CountDownTimer(20000, 1000) {
 
-                @Override
-                public void onTick(long millisUntilFinished) {
+            @Override
+            public void onTick(long millisUntilFinished) {
 
-                }
+            }
 
-                @Override
-                public void onFinish() {
-                    autofixTiles();
-                    Log.w("TIMER", "Fixing");
-                }
-            }.start();
+            @Override
+            public void onFinish() {
+                autofixTiles();
+                Log.w("TIMER", "Fixing");
+            }
+        }.start();
     }
 
     /**
@@ -360,10 +365,12 @@ public class Grid extends GridLayout {
             tileList.get(i).invalidate();
             respawnTile(temp.getxPos(), temp.getyPos(), temp.getValue());
         }
+        System.gc();
     }
 
     /**
      * Checks if there is any combo you can do with remaining tiles.
+     *
      * @return true if there is any possible move that can cause a combo.
      */
     public boolean isGameOver() {
