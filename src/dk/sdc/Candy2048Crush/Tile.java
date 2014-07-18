@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,13 +15,11 @@ import java.util.ArrayList;
  */
 
 public class Tile extends TextView implements View.OnClickListener {
-    private Grid parent;
+    private final Grid parent;
     private int xPos;
     private int yPos;
     private int value;
     private boolean selected;
-    private int width = 125;
-    private int height = 125;
 
 
     public Tile(Grid parent, int x, int y, int value) {
@@ -33,8 +30,8 @@ public class Tile extends TextView implements View.OnClickListener {
         setValue(value);
         setOnClickListener(this);
 
-        width = (parent.getWidth()-70)/8;
-        height = width;
+        int width = (parent.getWidth() - 70) / 8;
+        int height = width;
 
         this.setWidth(width);
         this.setHeight(height);
@@ -372,7 +369,7 @@ public class Tile extends TextView implements View.OnClickListener {
         parent.invalidate();
         this.postInvalidate();
         parent.postInvalidate();
-        Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; V2: " + this.getValue() + "; V3: " + this.getText() + "; Selected: " + ((Tile) v).isSelected());
+        Log.w("TILE ONCLICK", "X: " + ((Tile) v).getxPos() + "; Y: " + ((Tile) v).getyPos() + "; V: " + ((Tile) v).getValue() + "; V2: " + this.getValue() + "; V3: " + this.getText() + "; Selected: " + ((Tile)v).isSelected());
     }
 
     public int getxPos() {
