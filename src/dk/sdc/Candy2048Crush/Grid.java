@@ -268,7 +268,7 @@ public class Grid extends GridLayout {
             a.updateTile();
             b.updateTile();
             if (isGameOver()) {
-                Toast.makeText(getContext(), "Game Over, no combos left", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Game Over, no combos left", Toast.LENGTH_LONG).show();
                 gameOver = true;
             }
         } else {
