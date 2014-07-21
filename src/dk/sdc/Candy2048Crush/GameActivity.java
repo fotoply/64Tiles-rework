@@ -31,7 +31,7 @@ public class GameActivity extends Activity {
         grid = (Grid) findViewById(R.id.cvGameGrid);
         grid.parent = this;
         grid.gameOver = false;
-        grid.tileList.clear();
+        grid.clearTiles();
         grid.generateGrid(8, 8);
         //grid.autofixTiles();
 
@@ -42,7 +42,7 @@ public class GameActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (grid.gameOver) {
-                    grid.tileList.clear();
+                    grid.clearTiles();
                     grid.gameOver = false;
                     grid.generateGrid(8, 8);
                 } else {
@@ -54,7 +54,7 @@ public class GameActivity extends Activity {
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    grid.tileList.clear();
+                                    grid.clearTiles();
                                     grid.gameOver = false;
                                     grid.generateGrid(8, 8);
                                 }

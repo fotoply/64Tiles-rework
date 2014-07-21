@@ -288,24 +288,6 @@ public class Grid extends GridLayout {
         }
     }
 
-    public void autofixTiles() {
-        respawnAllTiles();
-        Log.w("TIMER", "Timer starting");
-        new CountDownTimer(20000, 1000) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                autofixTiles();
-                Log.w("TIMER", "Fixing");
-            }
-        }.start();
-    }
-
     /**
      * Checks if swapping two tiles can cause a combo
      *
@@ -380,5 +362,15 @@ public class Grid extends GridLayout {
             Log.w("TILE ALL", line);
             line = "";
         }
+    }
+
+    /**
+     * Clears the tileList of all tiles and removes associated views.
+     */
+    public void clearTiles() {
+        for (int i = 0; i < tileList.size(); i++) {
+            removeView(tileList.get(i));
+        }
+        tileList.clear();
     }
 }
